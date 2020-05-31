@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "infrastructureascode"
+version = "0.1.0"
+description = "Webpage infrastructureascode.ch"
+authors = ["ubaumann"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pelican = "^4.2.0"
+Markdown = "^3.2.1"
+notebook = "^6.0.3"
+ipynb = {git = "https://github.com/danielfrg/pelican-ipynb.git"}
+
+[tool.poetry.dev-dependencies]
+blank = "^0.1.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
