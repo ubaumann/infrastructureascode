@@ -41,7 +41,7 @@ DEFAULT_PAGINATION = False
 # Path to the folder containing the plugins
 PLUGIN_PATHS = ['pelican-plugins']
 # Enabled plugins
-PLUGINS = ['ipynb.markup']
+PLUGINS = ['pelican_jupyter.markup']
 
 # ipynb settings https://github.com/danielfrg/pelican-jupyter
 IPYNB_SKIP_CSS = True
