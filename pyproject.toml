@@ -9,7 +9,7 @@ python = "^3.8"
 pelican = "^4.2.0"
 Markdown = "^3.2.1"
 notebook = "^6.0.3"
-ipynb = {git = "https://github.com/danielfrg/pelican-ipynb.git"}
+pelican-jupyter = "^0.10.0"
 
 [tool.poetry.dev-dependencies]
 blank = "^0.1.0"
