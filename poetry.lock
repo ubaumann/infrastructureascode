@@ -30,6 +30,17 @@ python-versions = "*"
 version = "0.1.0"
 
 [[package]]
+category = "main"
+description = "A bash kernel for Jupyter"
+name = "bash-kernel"
+optional = false
+python-versions = "*"
+version = "0.7.2"
+
+[package.dependencies]
+pexpect = ">=4.0"
+
+[[package]]
 category = "dev"
 description = "A blank / template for creating a new Python package"
 name = "blank"
@@ -420,7 +431,6 @@ test = ["pytest"]
 [[package]]
 category = "main"
 description = "Pexpect allows easy control of interactive console applications."
-marker = "sys_platform != \"win32\""
 name = "pexpect"
 optional = false
 python-versions = "*"
@@ -629,7 +639,7 @@ python-versions = "*"
 version = "0.5.1"
 
 [metadata]
-content-hash = "a81d52712e9630abd5931b7c1d620e4309f96102e050c23fe921b389de3beb3f"
+content-hash = "72202294f57d907ad854f6d245765ff7dc070d37fc1777b0cca05cf9705aa136"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -644,6 +654,10 @@ attrs = [
 backcall = [
     {file = "backcall-0.1.0.tar.gz", hash = "sha256:38ecd85be2c1e78f77fd91700c76e14667dc21e2713b63876c0eb901196e01e4"},
     {file = "backcall-0.1.0.zip", hash = "sha256:bbbf4b1e5cd2bdb08f915895b51081c041bac22394fdfcfdfbe9f14b77c08bf2"},
+]
+bash-kernel = [
+    {file = "bash_kernel-0.7.2-py2.py3-none-any.whl", hash = "sha256:4036f8c3bbd8a8570cb7b71a891e94b5cf5425c13467df879468a0e9b551b6b2"},
+    {file = "bash_kernel-0.7.2.tar.gz", hash = "sha256:a08c84eddd8179de5234105821fd5cc210015671a0bd3cd0bc4f631c475e1670"},
 ]
 blank = [
     {file = "blank-0.1.0-py2.py3-none-any.whl", hash = "sha256:e0664d4f44367b97d057ebb3db7919a9b26175cd224916d248c238742c5c7099"},
