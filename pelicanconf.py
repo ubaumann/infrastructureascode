@@ -71,7 +71,7 @@ NEST_CSS_MINIFY = False
 # index.html
 NEST_INDEX_HEAD_TITLE = 'Infrastructure as Code'
 NEST_INDEX_HEADER_TITLE = 'Infrastructure as Code Blog'
-NEST_INDEX_HEADER_SUBTITLE = 'Collection of hopfully interesting blogs all around Infrastructure as Code and Network Automation'
+NEST_INDEX_HEADER_SUBTITLE = 'Collection of hopefully interesting blogs all around Infrastructure as Code and Network Automation'
 NEST_INDEX_CONTENT_TITLE = 'Last Posts'
 
 # Footer
