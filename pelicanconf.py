@@ -64,7 +64,7 @@ EXTRA_PATH_METADATA = {
 
 # NEST Settings
 NEST_HEADER_IMAGES = 'background.jpg'
-NEST_HEADER_LOGO = 'logo.svg'
+NEST_HEADER_LOGO = '/logo.svg'
 # Minified CSS
 NEST_CSS_MINIFY = False
 
