@@ -41,7 +41,7 @@ DEFAULT_PAGINATION = False
 # Path to the folder containing the plugins
 PLUGIN_PATHS = ['pelican-plugins']
 # Enabled plugins
-PLUGINS = ['ipynb.markup']
+PLUGINS = ['pelican_jupyter.markup']
 
 # ipynb settings https://github.com/danielfrg/pelican-jupyter
 IPYNB_SKIP_CSS = True
@@ -64,14 +64,14 @@ EXTRA_PATH_METADATA = {
 
 # NEST Settings
 NEST_HEADER_IMAGES = 'background.jpg'
-NEST_HEADER_LOGO = 'logo.svg'
+NEST_HEADER_LOGO = '/logo.svg'
 # Minified CSS
 NEST_CSS_MINIFY = False
 
 # index.html
 NEST_INDEX_HEAD_TITLE = 'Infrastructure as Code'
 NEST_INDEX_HEADER_TITLE = 'Infrastructure as Code Blog'
-NEST_INDEX_HEADER_SUBTITLE = 'Collection of hopfully interesting blogs all around Infrastructure as Code and Network Automation'
+NEST_INDEX_HEADER_SUBTITLE = 'Collection of hopefully interesting blogs all around Infrastructure as Code and Network Automation'
 NEST_INDEX_CONTENT_TITLE = 'Last Posts'
 
 # Footer

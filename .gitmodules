@@ -1,3 +1,6 @@
 [submodule "output"]
 	path = output
 	url = git@github.com:ubaumann/infrastructureascode_output.git
+[submodule "nest"]
+	path = templates/nest
+	url = git@github.com:ubaumann/nest.git
