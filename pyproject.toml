@@ -11,6 +11,7 @@ Markdown = "^3.2.1"
 notebook = "^6.0.3"
 pelican-jupyter = "^0.10.0"
 bash_kernel = "^0.7.2"
+pelican-sitemap = "^1.0.2"
 
 [tool.poetry.scripts]
 bash_kernel_install = 'bash_kernel.install'
