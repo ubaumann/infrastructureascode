@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = 'ubaumann'
 SITENAME = 'Infrastructure as Code'
-SITEURL = ''
+SITEURL = 'https://infrastructureascode.ch'
 
 PATH = 'content'
 
@@ -13,7 +13,7 @@ TIMEZONE = 'Europe/Paris'
 DEFAULT_LANG = 'en'
 
 # Feed generation is usually not desired when developing
-FEED_ALL_ATOM = None
+FEED_ALL_ATOM = 'feeds/all.atom.xml'
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
@@ -28,9 +28,10 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
 """
 
 # Social widget
-SOCIAL = (('Twitter', 'https://twitter.com/ubaumann_ch'),
+SOCIAL = (('Twitter', 'https://twitter.com/InfraAsCode'),
           ('LinkedIn', 'https://www.linkedin.com/in/ubaumannch/'),
-          ('GitHub', 'https://github.com/ubaumann'))
+          ('GitHub', 'https://github.com/ubaumann'),
+          ('YouTube','https://www.youtube.com/channel/UCNFY24_pZ_q3kHoswqci0dA'))
 
 DEFAULT_PAGINATION = False
 
@@ -41,7 +42,12 @@ DEFAULT_PAGINATION = False
 # Path to the folder containing the plugins
 PLUGIN_PATHS = ['pelican-plugins']
 # Enabled plugins
-PLUGINS = ['pelican_jupyter.markup']
+PLUGINS = ['sitemap', 'pelican_jupyter.markup']
+
+SITEMAP = {
+    "format": "xml",
+    "exclude": ["tag/", "category/"]
+}
 
 # ipynb settings https://github.com/danielfrg/pelican-jupyter
 IPYNB_SKIP_CSS = True
