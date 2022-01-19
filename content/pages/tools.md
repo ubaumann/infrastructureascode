@@ -9,7 +9,7 @@ Collection of small tools for quick tests or learning.
 
 Rendering Jinja Templates 
 
-[jinja101.infrastructureascode.ch](https://jinja101.infrastructureascode.ch/)
+[jinja101.infrastructureascode.ch](https://jinja101.infrastructureascode.ch/){:target="_blank"}
 
 
 #### Features
@@ -23,7 +23,7 @@ Rendering Jinja Templates
 - Undefined values behavior
 - Examples
 
-[![github]({filename}/images/github_icon.png)](https://github.com/INSRapperswil/jinja101)
+[![github]({filename}/images/github_icon.png)](https://github.com/INSRapperswil/jinja101){:target="_blank"}
 
 ```
 docker run --rm -it -p 5000:5000 ubaumann/jinja101
@@ -33,7 +33,7 @@ docker run --rm -it -p 5000:5000 ubaumann/jinja101
 
 Rendering raw text with a TTP template to get JSON
 
-[ttp101.infrastructureascode.ch](https://ttp101.infrastructureascode.ch/)
+[ttp101.infrastructureascode.ch](https://ttp101.infrastructureascode.ch/){:target="_blank"}
 
 
 #### Features
@@ -42,7 +42,7 @@ Rendering raw text with a TTP template to get JSON
 - JSON result
 - Examples
 
-[![github]({filename}/images/github_icon.png)](https://github.com/InfrastructureAsCode-ch/ttp101)
+[![github]({filename}/images/github_icon.png)](https://github.com/InfrastructureAsCode-ch/ttp101){:target="_blank"}
 
 ```
 docker run --rm -it -p 5000:5000 ubaumann/ttp101
@@ -52,7 +52,7 @@ docker run --rm -it -p 5000:5000 ubaumann/ttp101
 
 Rendering raw text with a TextFSM template to get JSON
 
-[textFSM101.infrastructureascode.ch](https://textFSM101.infrastructureascode.ch/)
+[textFSM101.infrastructureascode.ch](https://textFSM101.infrastructureascode.ch/){:target="_blank"}
 
 
 #### Features
@@ -61,7 +61,7 @@ Rendering raw text with a TextFSM template to get JSON
 - JSON result
 - Examples
 
-[![github]({filename}/images/github_icon.png)](https://github.com/InfrastructureAsCode-ch/textFSM101)
+[![github]({filename}/images/github_icon.png)](https://github.com/InfrastructureAsCode-ch/textFSM101){:target="_blank"}
 
 ```
 docker run --rm -it -p 5000:5000 ubaumann/textfsm101
