@@ -23,7 +23,7 @@ Rendering Jinja Templates
 - Undefined values behavior
 - Examples
 
-[![github]({filename}/images/github_icon.png)](https://github.com/INSRapperswil/jinja101){:target="_blank"}
+[![github]({static}/images/github_icon.png)](https://github.com/INSRapperswil/jinja101){:target="_blank"}
 
 ```
 docker run --rm -it -p 5000:5000 ubaumann/jinja101
@@ -42,7 +42,7 @@ Rendering raw text with a TTP template to get JSON
 - JSON result
 - Examples
 
-[![github]({filename}/images/github_icon.png)](https://github.com/InfrastructureAsCode-ch/ttp101){:target="_blank"}
+[![github]({static}/images/github_icon.png)](https://github.com/InfrastructureAsCode-ch/ttp101){:target="_blank"}
 
 ```
 docker run --rm -it -p 5000:5000 ubaumann/ttp101
@@ -61,7 +61,7 @@ Rendering raw text with a TextFSM template to get JSON
 - JSON result
 - Examples
 
-[![github]({filename}/images/github_icon.png)](https://github.com/InfrastructureAsCode-ch/textFSM101){:target="_blank"}
+[![github]({static}/images/github_icon.png)](https://github.com/InfrastructureAsCode-ch/textFSM101){:target="_blank"}
 
 ```
 docker run --rm -it -p 5000:5000 ubaumann/textfsm101

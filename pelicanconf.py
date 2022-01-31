@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
+import os
 
 AUTHOR = 'ubaumann'
 SITENAME = 'Infrastructure as Code'
-SITEURL = 'https://infrastructureascode.ch'
+SITEURL = os.environ.get('PELICAN_SITEURL', 'https://infrastructureascode.ch')
 
 PATH = 'content'
 

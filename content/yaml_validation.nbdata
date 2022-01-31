@@ -1,0 +1,8 @@
+Title: YAML Data Validation
+Slug: yaml_validation
+Date: 2022-02-01 12:00
+Author: ubaumann
+Category: DevOps
+Tags: YAML, DevNet, DevOps, GitOps, CICD
+Summary: YAML content can be validated with JSON Schema
+preview_img: vscode_yaml_validation.png
