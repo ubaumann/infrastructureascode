@@ -93,7 +93,7 @@ NEST_COPYRIGHT = '&copy; ubaumann 2020'
 # Add canonical link element to top page header and all article/author/category/tag page header
 NEST_REL_CANONICAL_LINK = True
 # Add items to top menu before pages
-MENUITEMS = [('Homepage', '/'),('Categories','/categories.html')]
+MENUITEMS = [('Homepage', '/'),('Categories','/categories.html'),('Tags','/tags.html')]
 
 # archives.html
 NEST_ARCHIVES_HEAD_TITLE = u'Archives'
