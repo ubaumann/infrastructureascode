@@ -32,7 +32,7 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
 SOCIAL = (('Twitter', 'https://twitter.com/InfraAsCode'),
           ('LinkedIn', 'https://www.linkedin.com/in/ubaumannch/'),
           ('GitHub', 'https://github.com/ubaumann'),
-          ('YouTube','https://www.youtube.com/channel/UCNFY24_pZ_q3kHoswqci0dA'))
+          ('YouTube','https://www.youtube.com/@infrastructureascode'))
 
 DEFAULT_PAGINATION = False
 
