@@ -3,6 +3,7 @@ Date: 2024-03-25 16:28
 Modified: 2024-03-25 16:28
 Tags: NetAut
 Authors: ubaumann
+preview_img: 202403_netautfs24.jpg
 
 
 This semester (February 19, 2024, to June 7, 2024), I am once again instructing the module on [Network Automation](https://studien.rj.ost.ch/allModules/public/39128_M_NetAut.html) for Bachelor of Computer Science students at the [Eastern Switzerland University of Applied Sciences](https://www.ost.ch/en/education/computer-science/bachelor-computer-science).
