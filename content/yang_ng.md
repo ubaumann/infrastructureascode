@@ -1,6 +1,7 @@
 Title: YANG NG, 100% compatibility with OpenAPI 3.1
 Slug: yang_ng
 Date: 2024-04-01 08:00
+Modified: 2024-04-01 22:35
 Author: ubaumann
 Category: April_Fool
 Tags: YANG
@@ -18,7 +19,7 @@ After diligent effort, we are pleased to announce the publication of the inaugur
 >
 > - Static types
 > - Use IEEE 754 binary64 numbers for decimal64
-> - ECMA-262 RegEx dialict
+> - ECMA-262 RegEx dialect
 > - No context based data validation
 > - No runtime model changes
 >
