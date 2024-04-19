@@ -1,6 +1,5 @@
 Title: CI/CD pipeline to update README.md with terraform-docs
 Date: 2024-04-19 20:28
-Modified: 2024-04-19 20:28
 Tags: Terraform, GitLab, CI/CD
 Authors: juntersander
 
@@ -8,12 +7,14 @@ In my journey to automate as much as possible, I stumbled upon the problem of ke
 I thought that should be easy, but as it turns out not as easy as I hoped. (At least for now)
 
 Currently, the simplest way seems to be the following:
+
 1. Create a ssh-key:
 	`ssh-keygen -t ed25519 -f ./deploy-key`
 2. Store the public key as a deploy key in the gitlab project settings (`Settings/Repository/Deploy keys`)
 3. Create a CI/CD variable and call it DEPLOY_KEY.
    Make sure that it's of type "File" and use the private key as value. Be sure to also include the last newline otherwise you will get a `Load Key "path/to/privatekey" error in libcrypto
 4. Update `.gitlab-ci.yml`
+
 ```yaml
 update-docs:
   stage: validate
@@ -45,4 +46,4 @@ update-docs:
 ```
 
 This could be improved and simplified in the future if the `CI_JOB_TOKEN` has the permissions to also push to the repository.
-It's an open issue on gitlab https://gitlab.com/gitlab-org/gitlab/-/issues/389060
+It's an open issue on gitlab [https://gitlab.com/gitlab-org/gitlab/-/issues/389060](https://gitlab.com/gitlab-org/gitlab/-/issues/389060)
