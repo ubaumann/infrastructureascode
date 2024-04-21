@@ -65,6 +65,7 @@ jobs:
 
   publish:
     name: publish
+    if: ${{ github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop' }}
     strategy:
       matrix:
         python-version: [ '3.10' ]
@@ -100,7 +101,7 @@ jobs:
           mkdir -p ~/.ssh
           echo "$SSH_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          git clone --branch develop ${{ vars.OUTPUT_REPO }} ../output
+          git clone --branch ${{ github.ref_name }} ${{ vars.OUTPUT_REPO }} ../output
         env:
           SSH_KEY: ${{ secrets.SSH_KEY_OUTPUT_REPO }}
       
