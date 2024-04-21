@@ -110,7 +110,14 @@ jobs:
       - name: Commit output repo
         run: |
           cd ../output
-          git add .
-          git -c user.name="GH Action" -c user.email="gh_workflow@infrastructureascode.repo" commit -m "${{ github.event.head_commit.message }}"
-          git push
+          if git diff --name-only | grep -v "sitemap.xml" | grep -q "output/"; then
+              echo "Changes detected"
+              git add .
+              git -c user.name="GH Action" -c user.email="gh_workflow@infrastructureascode.repo" commit -m "${{ github.event.head_commit.message }}"
+              git push
+              exit 0
+          else
+              echo "Only sitemap.xml changes, no commit"
+              exit 0
+          fi
       
