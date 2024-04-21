@@ -15,7 +15,7 @@
 	// "forwardPorts": [],
 	// Use 'postCreateCommand' to run commands after the container is created.
 	//"postStartCommand": "poetry config virtualenvs.create false && poetry install --no-root"
-	"postStartCommand": "poetry install --no-root && poetry shell",
+	"postStartCommand": "poetry install --no-root",
 	// Configure tool-specific properties.
 	"customizations": {
 		"codespaces": {
