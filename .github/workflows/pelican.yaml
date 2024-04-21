@@ -48,3 +48,14 @@ jobs:
               echo "No changes after make html."
               exit 0
           fi
+      
+      - name: Serve webpage
+        run: |
+          make serve &
+          sleep 5
+      
+      - name: Screenshot Website
+        uses: swinton/screenshot-website@v1.x
+        with:
+          source: http://127.0.0.1:8000
+          destination: screenshot.png
