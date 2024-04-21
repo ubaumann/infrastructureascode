@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="YAML content can be validated with JSON Schema">
+        <meta property="og:description" content="YAML content can be validated with JSON Schema">
+        <meta name="keywords" content="CICD, DevNet, DevOps, GitOps, YAML">
+        <meta name="author" content="ubaumann">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="YAML Data Validation - Infrastructure as Code">
+        <meta name="twitter:description" content="YAML content can be validated with JSON Schema">
+        <meta property="og:url" content="https://infrastructureascode.ch/yaml_validation.html">
+        <meta name="image" property="og:image" content="https://infrastructureascode.ch/images/vscode_yaml_validation.png">
+        <meta property="og:image" content="https://infrastructureascode.ch/images/vscode_yaml_validation.png">
+        <meta name="twitter:image" content="https://infrastructureascode.ch/images/vscode_yaml_validation.png">
+        
+        <link rel="icon" href="https://infrastructureascode.ch/favicon.ico">
+        <!-- Canonical -->
+        <link rel="canonical" href="https://infrastructureascode.ch/yaml_validation.html">
+        <!-- /Canonical -->
+
+        <title>YAML Data Validation - Infrastructure as Code</title>
+        <meta property="og:title" content="YAML Data Validation - Infrastructure as Code">
+
+        <!-- Stylesheets -->
+        <link href="https://infrastructureascode.ch/theme/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://infrastructureascode.ch/theme/css/fonts.css" rel="stylesheet">
+        <link href="https://infrastructureascode.ch/theme/css/nest.css" rel="stylesheet">
+        <link href="https://infrastructureascode.ch/theme/css/pygment.css" rel="stylesheet">
+        <!-- /Stylesheets -->
+
+        <!-- RSS Feeds -->
+        <link href="https://infrastructureascode.ch/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Infrastructure as Code Full Atom Feed" />
+        <!-- /RSS Feeds -->
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+    </head>
+
+    <body>
+
+        <!-- Header -->
+    <div class="header-container" style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('https://infrastructureascode.ch/images/background.jpg'); background-position: center; background-size: cover;">
+
+            <!-- Static navbar -->
+            <div class="container">
+                <div class="header-nav">
+                    <div class="header-logo">
+                        <a class="pull-left" href="https://infrastructureascode.ch/"><img class="mr20" src="https://infrastructureascode.ch/logo.svg" alt="logo">Infrastructure as Code</a>
+                    </div>
+                    <div class="nav pull-right">
+                                <a href="https://infrastructureascode.ch/">Homepage</a>
+                                <a href="https://infrastructureascode.ch/categories.html">Categories</a>
+                                <a href="https://infrastructureascode.ch/tags.html">Tags</a>
+                            <a  href="https://infrastructureascode.ch/pages/tools.html">Tools</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /Static navbar -->
+
+            <!-- Header -->
+    <!-- Header -->
+    <div class="container header-wrapper">
+        <div class="row">
+              <div class="col-lg-12">
+                  <div class="header-content">
+                      <h1 class="header-title">YAML Data Validation</h1>
+                      <p class="header-date">By <a href="https://infrastructureascode.ch/author/ubaumann.html">ubaumann</a>, Tue 01 February 2022, in category <a href="https://infrastructureascode.ch/category/devops.html">DevOps</a></p>
+                      <div class="header-underline"></div>
+                      <div class="clearfix"></div>
+                      <p class="pull-right header-tags">
+                          <span class="glyphicon glyphicon-tags mr5" aria-hidden="true"></span>
+<a href="https://infrastructureascode.ch/tag/cicd.html">CICD</a>, <a href="https://infrastructureascode.ch/tag/devnet.html">DevNet</a>, <a href="https://infrastructureascode.ch/tag/devops.html">DevOps</a>, <a href="https://infrastructureascode.ch/tag/gitops.html">GitOps</a>, <a href="https://infrastructureascode.ch/tag/yaml.html">YAML</a>                      </p>
+                  </div>
+              </div>
+        </div>
+    </div>
+    <!-- /Header -->
+            <!-- /Header -->
+
+        </div>
+        <!-- /Header -->
+
+
+        <!-- Content -->
+    <div class="container content">
+        <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="YAML-Data-Validation">YAML Data Validation<a class="anchor-link" href="#YAML-Data-Validation">&#182;</a></h1><p>YAML Files (and other data files like JSON) are becoming more and more important in infrastructure deployments and projects. We often edit YAML files in a text editor and a mistake can have a big impact. Before something is deployed in production, it should definitely be validated, tested and verified but how can we check that a YAML file is not only syntactically correct but also that the data structure is correct?</p>
+<p><a href="https://json-schema.org/">JSON Schema</a> is probably the defacto standard for validation of JSON data and can also be used for YAML files. A nice side effect is syntax highlighting in most text editors, which makes editing YAML files more pleasant and less error-prone.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="JSON-Schema">JSON Schema<a class="anchor-link" href="#JSON-Schema">&#182;</a></h2><p>This blog post only gives a general overview and some examples of JSON Schema. A good starting point for learning is <a href="https://json-schema.org/understanding-json-schema/index.html">JSON Schema - Understanding</a>. There are also many good tools and libraries available helping generating schemas. A list of implementations can be found <a href="https://json-schema.org/implementations.html">here</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-bash"><pre><span></span>cat<span class="w"> </span>&gt;<span class="w"> </span>urs.yaml<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<span class="s">---</span>
+<span class="s">name: urs</span>
+<span class="s">ipv4: 127.0.0.1</span>
+<span class="s">...</span>
+<span class="s">EOF</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The YAML data can be validated with a JSON Schema. Suppose we want to have YAML files with the name and IPv4 address. To validate the content we need to describe the schema. A mapping in YAML is an object in JSON. In this case the object has 2 properties named "name" and "ipv4". Both of type "string".</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-bash"><pre><span></span>cat<span class="w"> </span>&gt;<span class="w"> </span>name_schema.json<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<span class="s">{</span>
+<span class="s">    &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,</span>
+<span class="s">    &quot;type&quot;: &quot;object&quot;,</span>
+<span class="s">    &quot;additionalProperties&quot;: false,</span>
+<span class="s">    &quot;properties&quot;: {</span>
+<span class="s">        &quot;name&quot;: {</span>
+<span class="s">            &quot;type&quot;: &quot;string&quot;</span>
+<span class="s">        },</span>
+<span class="s">        &quot;ipv4&quot;: {</span>
+<span class="s">            &quot;type&quot;: &quot;string&quot;</span>
+<span class="s">        }</span>
+<span class="s">    }</span>
+<span class="s">}</span>
+<span class="s">EOF</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To validate the YAML file the CLI tool <a href="https://github.com/neilpa/yajsv">yajsv</a> can be used for example. <a href="https://www.npmjs.com/package/ajv-cli">ajv-cli</a> is also a good option.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-bash"><pre><span></span>curl<span class="w"> </span>https://github.com/neilpa/yajsv/releases/download/v1.4.0/yajsv.linux.amd64<span class="w"> </span>-o<span class="w"> </span>yajsv<span class="w"> </span>-L<span class="w"> </span>-s
+chmod<span class="w"> </span>+x<span class="w"> </span>yajsv
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-bash"><pre><span></span>./yajsv<span class="w"> </span>-s<span class="w"> </span>name_schema.json<span class="w"> </span>urs.yaml
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>urs.yaml: pass
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Data-Validation">Data Validation<a class="anchor-link" href="#Data-Validation">&#182;</a></h3><p>JSON Schema can validate more than just data types. For the type <a href="https://json-schema.org/understanding-json-schema/reference/numeric.html">"number"</a> there are among others <code>minimum</code>, <code>exclusiveMinimum</code>, <code>maximum</code>, <code>exclusiveMaximum</code> and <code>multipleOf</code> options available. For <a href="https://json-schema.org/understanding-json-schema/reference/string.html">"string"</a> you can validate patterns with regex and there are also predefined <a href="https://json-schema.org/understanding-json-schema/reference/string.html#format">formats</a> available.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-bash"><pre><span></span>cat<span class="w"> </span>&gt;<span class="w"> </span>name_schema.json<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<span class="s">{</span>
+<span class="s">    &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,</span>
+<span class="s">    &quot;type&quot;: &quot;object&quot;,</span>
+<span class="s">    &quot;additionalProperties&quot;: false,</span>
+<span class="s">    &quot;properties&quot;: {</span>
+<span class="s">        &quot;name&quot;: {</span>
+<span class="s">            &quot;type&quot;: &quot;string&quot;,</span>
+<span class="s">            &quot;pattern&quot;: &quot;^[A-Z].*$&quot;</span>
+<span class="s">        },</span>
+<span class="s">        &quot;ipv4&quot;: {</span>
+<span class="s">            &quot;type&quot;: &quot;string&quot;,</span>
+<span class="s">            &quot;format&quot;: &quot;ipv4&quot;</span>
+<span class="s">        }</span>
+<span class="s">    }</span>
+<span class="s">}</span>
+<span class="s">EOF</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-bash"><pre><span></span>./yajsv<span class="w"> </span>-s<span class="w"> </span>name_schema.json<span class="w"> </span>urs.yaml
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>urs.yaml: fail: name: Does not match pattern &#39;^[A-Z].*$&#39;
+1 of 1 failed validation
+urs.yaml: fail: name: Does not match pattern &#39;^[A-Z].*$&#39;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The regex checks if the name content starts with a capital letter and now fails. The IP address is valid. After the name is corrected, the file passes the verification again.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-bash"><pre><span></span>cat<span class="w"> </span>&gt;<span class="w"> </span>urs.yaml<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<span class="s">---</span>
+<span class="s">name: Urs</span>
+<span class="s">ipv4: 127.0.0.1</span>
+<span class="s">...</span>
+<span class="s">EOF</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-bash"><pre><span></span>./yajsv<span class="w"> </span>-s<span class="w"> </span>name_schema.json<span class="w"> </span>urs.yaml
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>urs.yaml: pass
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>JSON Schema has generic annotations not used for validations, but to describe and self-document the schema. It is also used in tools like syntax highlighting in editors.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-bash"><pre><span></span>cat<span class="w"> </span>&gt;<span class="w"> </span>name_schema.json<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<span class="s">{</span>
+<span class="s">    &quot;$schema&quot;: &quot;https://json-schema.org/draft/2020-12/schema&quot;,</span>
+<span class="s">    &quot;$id&quot;: &quot;schema/schemas/name.json&quot;,</span>
+<span class="s">    &quot;type&quot;: &quot;object&quot;,</span>
+<span class="s">    &quot;$comment&quot;: &quot;Only the defined properties are allowed&quot;,</span>
+<span class="s">    &quot;additionalProperties&quot;: false,</span>
+<span class="s">    &quot;properties&quot;: {</span>
+<span class="s">        &quot;name&quot;: {</span>
+<span class="s">            &quot;type&quot;: &quot;string&quot;,</span>
+<span class="s">            &quot;pattern&quot;: &quot;^[A-Z].*$&quot;,</span>
+<span class="s">            &quot;title&quot;: &quot;Name&quot;,</span>
+<span class="s">            &quot;description&quot;: &quot;Name beginning with a capital letter&quot;,</span>
+<span class="s">            &quot;examples&quot;: [</span>
+<span class="s">                &quot;Jane Doe&quot;,</span>
+<span class="s">                &quot;John Doe&quot;,</span>
+<span class="s">                &quot;Jane&quot;</span>
+<span class="s">            ]</span>
+<span class="s">        },</span>
+<span class="s">        &quot;ipv4&quot;: {</span>
+<span class="s">            &quot;type&quot;: &quot;string&quot;,</span>
+<span class="s">            &quot;format&quot;: &quot;ipv4&quot;,</span>
+<span class="s">            &quot;title&quot;: &quot;IP Address&quot;,</span>
+<span class="s">            &quot;description&quot;: &quot;IPv4 Address belonging to the name&quot;,</span>
+<span class="s">            &quot;examples&quot;: [</span>
+<span class="s">                &quot;127.0.0.1&quot;,</span>
+<span class="s">                &quot;10.11.12.13&quot;</span>
+<span class="s">            ]</span>
+<span class="s">        }</span>
+<span class="s">    }</span>
+<span class="s">}</span>
+<span class="s">EOF</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Structuring-Schema">Structuring Schema<a class="anchor-link" href="#Structuring-Schema">&#182;</a></h3><p>The keyword <a href="https://json-schema.org/understanding-json-schema/structuring.html#id18"><code>$ref</code></a> can be used for structuring schemas and make especially bigger schemas more readable by defining (sub)schemas and (re)using them.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-bash"><pre><span></span>cat<span class="w"> </span>&gt;<span class="w"> </span>service_schema.json<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<span class="s">{</span>
+<span class="s">    &quot;$schema&quot;: &quot;http://json-schema.org/draft-07/schema#&quot;,</span>
+<span class="s">    &quot;type&quot;: &quot;object&quot;,</span>
+<span class="s">    &quot;additionalProperties&quot;: false,</span>
+<span class="s">    &quot;properties&quot;: {</span>
+<span class="s">        &quot;services&quot;: {</span>
+<span class="s">            &quot;type&quot;: &quot;array&quot;,</span>
+<span class="s">            &quot;items&quot;: {</span>
+<span class="s">                &quot;type&quot;: &quot;object&quot;,</span>
+<span class="s">                &quot;properties&quot;: {</span>
+<span class="s">                    &quot;name&quot;: {</span>
+<span class="s">                        &quot;type&quot;: &quot;string&quot;</span>
+<span class="s">                    },</span>
+<span class="s">                    &quot;ports&quot;: {</span>
+<span class="s">                        &quot;type&quot;: &quot;array&quot;,</span>
+<span class="s">                        &quot;items&quot;: {</span>
+<span class="s">                            &quot;$ref&quot;: &quot;#/$defs/Port&quot;</span>
+<span class="s">                        }</span>
+<span class="s">                    }</span>
+<span class="s">                },</span>
+<span class="s">                &quot;required&quot;: [</span>
+<span class="s">                    &quot;name&quot;,</span>
+<span class="s">                    &quot;ports&quot;</span>
+<span class="s">                ]</span>
+<span class="s">            }</span>
+<span class="s">        }</span>
+<span class="s">    },</span>
+<span class="s">    &quot;required&quot;: [</span>
+<span class="s">        &quot;services&quot;</span>
+<span class="s">    ],</span>
+<span class="s">    &quot;$defs&quot;: {</span>
+<span class="s">        &quot;Port&quot;: {</span>
+<span class="s">            &quot;type&quot;: &quot;object&quot;,</span>
+<span class="s">            &quot;properties&quot;: {</span>
+<span class="s">                &quot;port&quot;: {</span>
+<span class="s">                    &quot;type&quot;: &quot;integer&quot;</span>
+<span class="s">                },</span>
+<span class="s">                &quot;name&quot;: {</span>
+<span class="s">                    &quot;type&quot;: &quot;string&quot;</span>
+<span class="s">                },</span>
+<span class="s">                &quot;targetPort&quot;: {</span>
+<span class="s">                    &quot;type&quot;: &quot;integer&quot;</span>
+<span class="s">                }</span>
+<span class="s">            },</span>
+<span class="s">            &quot;required&quot;: [</span>
+<span class="s">                &quot;port&quot;,</span>
+<span class="s">                &quot;name&quot;</span>
+<span class="s">            ]</span>
+<span class="s">        }</span>
+<span class="s">    }</span>
+<span class="s">}</span>
+<span class="s">EOF</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-bash"><pre><span></span>cat<span class="w"> </span>&gt;<span class="w"> </span>myService.yaml<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<span class="s">---</span>
+<span class="s">services:</span>
+<span class="s">  - name: app01</span>
+<span class="s">    ports:</span>
+<span class="s">      - name: http</span>
+<span class="s">        port: &amp;http 80</span>
+<span class="s">      - port: 8080</span>
+<span class="s">        name: http_alt</span>
+<span class="s">        targetPort: *http</span>
+<span class="s">      - name: https</span>
+<span class="s">        port: 443</span>
+<span class="s">  - name: db01</span>
+<span class="s">    ports:</span>
+<span class="s">      - port: 5432</span>
+<span class="s">        name: sql</span>
+<span class="s">...</span>
+<span class="s">EOF</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-bash"><pre><span></span>./yajsv<span class="w"> </span>-s<span class="w"> </span>service_schema.json<span class="w"> </span>myService.yaml
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>myService.yaml: pass
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Schema-Generator">Schema Generator<a class="anchor-link" href="#Schema-Generator">&#182;</a></h2><p>Generators provide a good starting point for creating a schema. Of the JSON Schema generators used, <a href="https://app.quicktype.io/">https://app.quicktype.io/</a> is one of the most popular. The generator only supports JSON so the data need to be converted first when creating the schema. Depending on the structure, a single JSON can be used or many JSON objects in the "Source type" <code>Multiple JSON</code>. Most of the time the generated schema needs adjustment and adding semantic checks like pattern, format, enum or number restrictions but it shortens the time for creating a schema enormously.</p>
+<p><img src="https://infrastructureascode.ch/images/quicktype_json_schema.png" alt="quicktype"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Editor-Support">Editor Support<a class="anchor-link" href="#Editor-Support">&#182;</a></h2><p>Many editors support JSON Schema for YAML files and thus autocompletion and tooltips as well as validation. This makes editing YAML files easier and less error-prone, since you get feedback before you save the file. Many editors use the <a href="https://github.com/redhat-developer/yaml-language-server">yaml-language-server</a> implementation from Red Hat. The following examples are tested with VS Code with the <a href="https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml">YAML</a> extension.</p>
+<p><img src="https://infrastructureascode.ch/images/vscode_yaml_validation.png" alt="vscode_yaml_validation"></p>
+<p>Like other editors the <code>yaml-language-server</code> supports the <a href="https://www.schemastore.org/json/">JSON Schema Store</a>. A list of schemas with associated <code>fileMatch</code> patterns is retrieved from the <a href="https://www.schemastore.org/api/json/catalog.json">API</a>. If a file matches a pattern, the associated scheme is used. For example, all YAML files under the path <code>.github/workflows/*.yaml</code> are automatically validated with the schema <a href="https://json.schemastore.org/github-workflow.json">github-workflow.json</a>.</p>
+<p>To see the list of schemas with YAML files, <code>jq</code> can be used. The following command is limited to the first 15 lines.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-bash"><pre><span></span>curl<span class="w"> </span>https://www.schemastore.org/api/json/catalog.json<span class="w"> </span>-s<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.schemas[] | select((.fileMatch != null) and ((.fileMatch[] | contains(&quot;yaml&quot;)) or (.fileMatch[] | contains(&quot;yml&quot;)))) | { name: .name, fileMatch: .fileMatch }&#39;</span><span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-15
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{
+  &#34;name&#34;: &#34;AnyWork Automation Configuration&#34;,
+  &#34;fileMatch&#34;: [
+    &#34;.awc.yaml&#34;,
+    &#34;.awc.yml&#34;,
+    &#34;.awc.json&#34;,
+    &#34;.awc.jsonc&#34;,
+    &#34;.awc&#34;
+  ]
+}
+{
+  &#34;name&#34;: &#34;AnyWork Automation Configuration&#34;,
+  &#34;fileMatch&#34;: [
+    &#34;.awc.yaml&#34;,
+    &#34;.awc.yml&#34;,
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Schema-Assignment">Schema Assignment<a class="anchor-link" href="#Schema-Assignment">&#182;</a></h3><p>Schemas can also be stored on any webserver, on the file system or in the project directory. In VS Code you can configure the schema assignment in the settings. Globally or for each project.</p>
+<p>In a project that contains the schemas, the <code>.vscode/settings.json</code> file might look like this using relative paths:</p>
+
+<pre><code>{
+    "yaml.schemas": {
+        "schema/schemas/hosts.json": [
+            "host*.yaml",
+            "host*.yml"
+        ],
+        "schema/schemas/groups.json": [
+            "group*.yaml",
+            "group*.yml"
+        ],
+        "schema/schemas/defaults.json": [
+            "default.yaml",
+            "default.yml"
+        ],
+    }
+}</code></pre>
+<p>Because the schemas are included in the project, it is easy to use them in the CI/CD pipeline.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Modeline">Modeline<a class="anchor-link" href="#Modeline">&#182;</a></h3><p>The schema can be specified inline with a modeline comment at the beginning of the YAML file. The schema url can be a web url, a relative or an absolute path.</p>
+
+<pre><code># yaml-language-server: $schema=https://server/schema.json</code></pre>
+
+<pre><code># yaml-language-server: $schema=../relative/path/hosts.json</code></pre>
+
+<pre><code># yaml-language-server: $schema=/opt/schemas/groups.json</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-bash"><pre><span></span>cat<span class="w"> </span>&gt;<span class="w"> </span>urs.yaml<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<span class="s">---</span>
+<span class="s"># yaml-language-server: $schema=schema/schemas/name.json</span>
+<span class="s">name: Urs</span>
+<span class="s">ipv4: 127.0.0.1</span>
+<span class="s">...</span>
+<span class="s">EOF</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Kubernetes">Kubernetes<a class="anchor-link" href="#Kubernetes">&#182;</a></h3><p>The <code>yaml-language-server</code> includes Kubernetes, but does not know if a file is a Kubernetes file or not. Therefore, the pattern is needed in the settings to identify the YAML files. To recognize all YAML files starting with "k8s" as Kubernetes files, the following settings are required.</p>
+
+<pre><code>{
+    "yaml.schemas": {
+        "kubernetes": [
+            "k8s*.yaml",
+            "k8s*.yml"
+        ]
+    }
+}</code></pre>
+<p>Also inline specification works. Schemas generated from Swagger are available.</p>
+
+<pre><code># yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/all.json</code></pre>
+<p>Or a specific Kubernetes version</p>
+
+<pre><code># yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.23.1-standalone-strict/all.json</code></pre>
+
+</div>
+</div>
+</div>
+ 
+
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+
+
+        
+    </div>
+        <!-- /Content --> 
+
+        <!-- Footer -->
+        <div class="footer gradient-2">
+            <div class="container footer-container ">
+                <div class="row">
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                        <div class="footer-title">Sitemap</div>
+                        <ul class="list-unstyled">
+                            <li><a href="https://infrastructureascode.ch/archives.html">Archives</a></li>
+                            <li><a href="https://infrastructureascode.ch/tags.html">Tags</a></li>
+                            <li><a href="https://infrastructureascode.ch/authors.html">Authors</a></li>
+                            <li><a href="https://infrastructureascode.ch/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">Atom Feed</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                        <div class="footer-title">Social</div>
+                        <ul class="list-unstyled">
+                            <li><a href="https://twitter.com/InfraAsCode" target="_blank">Twitter</a></li>
+                            <li><a href="https://www.linkedin.com/in/ubaumannch/" target="_blank">LinkedIn</a></li>
+                            <li><a href="https://github.com/ubaumann" target="_blank">GitHub</a></li>
+                            <li><a href="https://www.youtube.com/@infrastructureascode" target="_blank">YouTube</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                    </div> 
+                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                        <p class="pull-right text-right">
+                            <small><em>Proudly powered by <a href="http://docs.getpelican.com/" target="_blank">pelican</a></em></small><br/>
+                            <small><em>Theme and code by <a href="https://github.com/molivier" target="_blank">molivier</a></em></small><br/>
+                            <small>&copy; ubaumann 2020</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Footer -->
+    </body>
+</html>

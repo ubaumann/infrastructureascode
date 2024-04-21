@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="The draft for YANG Next Generation was published on April 1st. The new version is fully compatible with OpenAPI 3.1.">
+        <meta property="og:description" content="The draft for YANG Next Generation was published on April 1st. The new version is fully compatible with OpenAPI 3.1.">
+        <meta name="keywords" content="YANG">
+        <meta name="author" content="ubaumann">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="YANG NG, 100% compatibility with OpenAPI 3.1 - Infrastructure as Code">
+        <meta name="twitter:description" content="The draft for YANG Next Generation was published on April 1st. The new version is fully compatible with OpenAPI 3.1.">
+        <meta property="og:url" content="https://infrastructureascode.ch/yang_ng.html">
+        <meta name="image" property="og:image" content="https://infrastructureascode.ch/images/yang_ng.png">
+        <meta property="og:image" content="https://infrastructureascode.ch/images/yang_ng.png">
+        <meta name="twitter:image" content="https://infrastructureascode.ch/images/yang_ng.png">
+        
+        <link rel="icon" href="https://infrastructureascode.ch/favicon.ico">
+        <!-- Canonical -->
+        <link rel="canonical" href="https://infrastructureascode.ch/yang_ng.html">
+        <!-- /Canonical -->
+
+        <title>YANG NG, 100% compatibility with OpenAPI 3.1 - Infrastructure as Code</title>
+        <meta property="og:title" content="YANG NG, 100% compatibility with OpenAPI 3.1 - Infrastructure as Code">
+
+        <!-- Stylesheets -->
+        <link href="https://infrastructureascode.ch/theme/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://infrastructureascode.ch/theme/css/fonts.css" rel="stylesheet">
+        <link href="https://infrastructureascode.ch/theme/css/nest.css" rel="stylesheet">
+        <link href="https://infrastructureascode.ch/theme/css/pygment.css" rel="stylesheet">
+        <!-- /Stylesheets -->
+
+        <!-- RSS Feeds -->
+        <link href="https://infrastructureascode.ch/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Infrastructure as Code Full Atom Feed" />
+        <!-- /RSS Feeds -->
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+    </head>
+
+    <body>
+
+        <!-- Header -->
+    <div class="header-container" style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('https://infrastructureascode.ch/images/background.jpg'); background-position: center; background-size: cover;">
+
+            <!-- Static navbar -->
+            <div class="container">
+                <div class="header-nav">
+                    <div class="header-logo">
+                        <a class="pull-left" href="https://infrastructureascode.ch/"><img class="mr20" src="https://infrastructureascode.ch/logo.svg" alt="logo">Infrastructure as Code</a>
+                    </div>
+                    <div class="nav pull-right">
+                                <a href="https://infrastructureascode.ch/">Homepage</a>
+                                <a href="https://infrastructureascode.ch/categories.html">Categories</a>
+                                <a href="https://infrastructureascode.ch/tags.html">Tags</a>
+                            <a  href="https://infrastructureascode.ch/pages/tools.html">Tools</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /Static navbar -->
+
+            <!-- Header -->
+    <!-- Header -->
+    <div class="container header-wrapper">
+        <div class="row">
+              <div class="col-lg-12">
+                  <div class="header-content">
+                      <h1 class="header-title">YANG NG, 100% compatibility with OpenAPI 3.1</h1>
+                      <p class="header-date">By <a href="https://infrastructureascode.ch/author/ubaumann.html">ubaumann</a>, Mon 01 April 2024, modified Mon 01 April 2024, in category <a href="https://infrastructureascode.ch/category/april_fool.html">April Fool</a></p>
+                      <div class="header-underline"></div>
+                      <div class="clearfix"></div>
+                      <p class="pull-right header-tags">
+                          <span class="glyphicon glyphicon-tags mr5" aria-hidden="true"></span>
+<a href="https://infrastructureascode.ch/tag/yang.html">YANG</a>                      </p>
+                  </div>
+              </div>
+        </div>
+    </div>
+    <!-- /Header -->
+            <!-- /Header -->
+
+        </div>
+        <!-- /Header -->
+
+
+        <!-- Content -->
+    <div class="container content">
+        <p>After diligent effort, we are pleased to announce the publication of the inaugural draft of YANG NG (Next Generation) on April 1st. </p>
+<blockquote>
+<p><big><b>TL;DR</b></big></p>
+<p>Thanks to the simplification of YANG NG it is 100% campatable with OpenAPI 3.1!</p>
+<ul>
+<li>Static types</li>
+<li>Use IEEE 754 binary64 numbers for decimal64</li>
+<li>ECMA-262 RegEx dialect</li>
+<li>No context based data validation</li>
+<li>No runtime model changes
+</li>
+</ul>
+</blockquote>
+<p><img alt="YANG NG" src="https://infrastructureascode.ch/images/yang_ng.png"></p>
+<p>The goal of this document is to outline the primary adaptations required for achieving compatibility between YANG NG and OpenAPI.</p>
+<h2>Data types</h2>
+<p>While YANG 1.1 defines 19 built-in data types, the types specified in the <a href="https://spec.openapis.org/oas/v3.1.0">OpenAPI Specification 3.1</a> (OAS) are derived from the data types outlined in the <a href="https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00">JSON Schema Specification Draft 2020-12</a> (refer to tables below). In order to ensure compatibility with OAS 3.1, YANG NG facilitates the mapping of its data types to those defined in JSON Schema.</p>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc7950#section-4.2.4">YANG 1.1 Built-In Types</a></p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>binary</td>
+<td>Any binary data</td>
+</tr>
+<tr>
+<td>bits</td>
+<td>A set of bits or flags</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>"true" or "false"</td>
+</tr>
+<tr>
+<td>decimal64</td>
+<td>64-bit signed decimal number</td>
+</tr>
+<tr>
+<td>empty</td>
+<td>A leaf that does not have any value</td>
+</tr>
+<tr>
+<td>enumeration</td>
+<td>One of an enumerated set of strings</td>
+</tr>
+<tr>
+<td>identityref</td>
+<td>A reference to an abstract identity</td>
+</tr>
+<tr>
+<td>instance-identifier</td>
+<td>A reference to a data tree node</td>
+</tr>
+<tr>
+<td>int8</td>
+<td>8-bit signed integer</td>
+</tr>
+<tr>
+<td>int16</td>
+<td>16-bit signed integer</td>
+</tr>
+<tr>
+<td>int32</td>
+<td>32-bit signed integer</td>
+</tr>
+<tr>
+<td>int64</td>
+<td>64-bit signed integer</td>
+</tr>
+<tr>
+<td>leafref</td>
+<td>A reference to a leaf instance</td>
+</tr>
+<tr>
+<td>string</td>
+<td>A character string</td>
+</tr>
+<tr>
+<td>uint8</td>
+<td>8-bit unsigned integer</td>
+</tr>
+<tr>
+<td>uint16</td>
+<td>16-bit unsigned integer</td>
+</tr>
+<tr>
+<td>uint32</td>
+<td>32-bit unsigned integer</td>
+</tr>
+<tr>
+<td>uint64</td>
+<td>64-bit unsigned integer</td>
+</tr>
+<tr>
+<td>union</td>
+<td>Choice of member types</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p><a href="https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-00#section-4.2.1">JSON Schema Specification Draft 2020-12 Instance Data Model</a></p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>null</td>
+<td>A JSON "null" value</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>A "true" or "false" value, from the JSON "true" or "false" value</td>
+</tr>
+<tr>
+<td>object</td>
+<td>An unordered set of properties mapping a string to an instance, from the JSON "object" value</td>
+</tr>
+<tr>
+<td>array</td>
+<td>An ordered list of instances, from the JSON "array" value</td>
+</tr>
+<tr>
+<td>number</td>
+<td>An arbitrary-precision, base-10 decimal number value, from the JSON "number" value</td>
+</tr>
+<tr>
+<td>string</td>
+<td>A string of Unicode code points, from the JSON "string" value</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p>The YANG data types <code>boolean</code>, <code>empty</code>, and <code>string</code> correspond respectively to the JSON Schema types <code>boolean</code>, <code>null</code>, and <code>string</code>. YANG integers without additional restrictions, such as a 'range' statement, can be mapped to the corresponding JSON Schema number type, adhering to the specific restrictions outlined in the provided list.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>JSON Schema restriction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int8</td>
+<td><code>{"minimum": -128, "maximum": 127}</code></td>
+</tr>
+<tr>
+<td>int16</td>
+<td><code>{"minimum": -32768, "maximum": 32767}</code></td>
+</tr>
+<tr>
+<td>int32</td>
+<td><code>{"minimum": -2147483648, "maximum": 2147483647}</code></td>
+</tr>
+<tr>
+<td>int64</td>
+<td><code>{"minimum": 9223372036854775808, "maximum": 9223372036854775807}</code></td>
+</tr>
+<tr>
+<td>uint8</td>
+<td><code>{"minimum": 0, "maximum": 255}</code></td>
+</tr>
+<tr>
+<td>uint16</td>
+<td><code>{"minimum": 0, "maximum": 65535}</code></td>
+</tr>
+<tr>
+<td>uint32</td>
+<td><code>{"minimum": 0, "maximum": 4294967295}</code></td>
+</tr>
+<tr>
+<td>uint64</td>
+<td><code>{"minimum": 0, "maximum": 18446744073709551615}</code></td>
+</tr>
+</tbody>
+</table>
+<h3>decimal64</h3>
+<p>The YANG specification defines <code>decimal64</code> as follows:</p>
+<blockquote>
+<p>The value space of decimal64 is the set of numbers that can be obtained by multiplying a 64-bit signed integer by a negative power of ten, i.e., expressible as "i x 10^-n" where i is an integer64 and n is an integer between 1 and 18, inclusively</p>
+</blockquote>
+<p>JSON numbers are represented as IEEE 754 binary64 numbers, which consist of a 64-bit floating point with a sign bit, exponent, and fraction bits. Consequently, <strong>YANG NG will employ IEEE 754 binary64 to represent decimal64</strong>.</p>
+<h3>enumeration</h3>
+<p>To streamline YANG NG, the built-in enumeration type has been eliminated, with its functionality now achievable through string restrictions.</p>
+<h3>binary and bits</h3>
+<p>JSON does not inherently support <code>binary</code> data. Therefore, in YANG NG, all binary data must be encoded in Base64 format. Additionally, the <code>bits</code> data type has been removed, and booleans are now recommended for representing flags.</p>
+<h3>static types</h3>
+<p>YANG 1.1's <a href="https://datatracker.ietf.org/doc/html/rfc7950#section-9.12">union type</a> allows for dynamic typing, where a member can be of any built-in or derived type. However, this flexibility often complicates working with YANG. In <strong>YANG NG, the union type has been removed</strong> without replacement. Instead, a data type remains constant unless explicitly specified as 'null' when unspecified.</p>
+<h3>references</h3>
+<p>With <a href="https://datatracker.ietf.org/doc/html/rfc7950#section-9.9">leafref</a> in YANG 1.1, it's possible to reference another leaf, which is particularly useful when specifying an interface. However, with the default setting of "instance-identifier", validation fails if the referenced leaf does not exist. Unlike YANG, OAS, and JSON Schema do not support validation of data from other attributes. Although there was a <a href="https://github.com/json-schema-org/json-schema-spec/issues/51">proposal</a> for a <code>$data</code> keyword in JSON Schema to introduce this capability, it was rejected due to the complexity it would introduce. Implementing such validation adds significant complexity because sub-schemas cannot be validated independently, and the data context needs to be managed. Even if some implementations support the <code>$data</code> keyword, it's not standardized and cannot be relied upon. YANG NG aims to simplify the model and does not include such a feature. Validation-related business logic must be handled in the application, and in case of errors, please provide understandable error messages.</p>
+<h2>Restrictions</h2>
+<p>YANG NG simplifies and aligns data type restrictions with JSON Schema. The most important changes are outlined in the following subchapters.</p>
+<h3>Range</h3>
+<p>Range statements define the permissible range of a number. Unlike YANG 1.1, YANG NG does not support specifying multiple ranges using the <code>|</code> syntax.</p>
+<h3>Pattern / Regex</h3>
+<p>The pattern matching in the previous version of YANG was based on the <a href="https://www.w3.org/TR/2004/REC-xmlschema-2-20041028">W3C XML Schema</a> dialect and utilized in XDS. However, working with these patterns in modern programming languages requires translation for certain features, such as the <a href="https://www.w3.org/TR/2004/REC-xmlschema-2-20041028/#nt-charProp">Category Escape</a>. For instance, in XSD, <code>\p{Lu}</code> matches an uppercase letter, whereas <code>\P{Lu}</code> matches everything except an uppercase letter, which would need to be translated to <code>r"[A-Z]"</code> and <code>r"[^A-Z]"</code>, respectively. JSON Schema, on the other hand, employs the <a href="https://262.ecma-international.org/11.0/">ECMA-262</a> dialect, also used in JavaScript, which benefits from higher tooling support. Therefore, YANG NG transitions to using the ECMA-262 dialect.</p>
+<h3>Derived Types</h3>
+<p>YANG NG still permits the creation of derived data types. In YANG 1.1, inherited restrictions are combined using the AND logic. However, after extensive discussions, it was determined that in YANG NG, a newly defined restriction overrides any previous restrictions. If the previous behavior is desired, the AND-linked syntax for the new keyword can be generated with additional tooling to support the YANG model developer.</p>
+<h2>Choices</h2>
+<p>While choices are still supported in YANG NG through its alignment with the functionality of JSON Schema's <code>oneOf</code>, it is advisable to exercise caution in their use due to the potential introduction of complexity. Although choices enable the allowance of different data types for the same properties, it is not considered best practice.</p>
+<h2>Conditions</h2>
+<p>It's worth noting a significant change from YANG 1.1: YANG NG will no longer allow runtime changes to the model. Unlike YANG 1.1, which permitted altering the model using the <code>when</code> statement, YANG NG maintains consistency and integrity by enforcing static data types throughout the model. This adjustment enhances model predictability and reliability.</p>
+<h2>xPath</h2>
+<p>To achieve full compatibility with OpenAPI and JSON Schema, YANG NG will introduce a new path syntax that combines the features of both <a href="https://www.w3schools.com/xml/xpath_syntax.asp">xPath (W3C)</a> and <a href="https://datatracker.ietf.org/doc/html/rfc6901">JSON Pointer (RFC 6901)</a>. This change will streamline integration and development processes, facilitating smoother interactions between systems.</p>
+<h2>Conclusion</h2>
+<p>This is an <a href="https://en.wikipedia.org/wiki/April_Fools%27_Day">April Fool</a>'s prank. However, the complexity of working with YANG can indeed be challenging. If we view SNMP as the first attempt, YANG represents a subsequent approach. Let's hope that future endeavors will yield more practical solutions. </p>
+<p>For any discussions reach out on <a href="https://www.linkedin.com/in/ubaumannch/">Linkedin</a>, <a href="https://github.com/ubaumann/infrastructureascode/discussions">GitHub Discussions</a> or <a href="https://twitter.com/InfraAsCode">X (Twitter)</a>.</p>
+
+
+        
+    </div>
+        <!-- /Content --> 
+
+        <!-- Footer -->
+        <div class="footer gradient-2">
+            <div class="container footer-container ">
+                <div class="row">
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                        <div class="footer-title">Sitemap</div>
+                        <ul class="list-unstyled">
+                            <li><a href="https://infrastructureascode.ch/archives.html">Archives</a></li>
+                            <li><a href="https://infrastructureascode.ch/tags.html">Tags</a></li>
+                            <li><a href="https://infrastructureascode.ch/authors.html">Authors</a></li>
+                            <li><a href="https://infrastructureascode.ch/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">Atom Feed</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                        <div class="footer-title">Social</div>
+                        <ul class="list-unstyled">
+                            <li><a href="https://twitter.com/InfraAsCode" target="_blank">Twitter</a></li>
+                            <li><a href="https://www.linkedin.com/in/ubaumannch/" target="_blank">LinkedIn</a></li>
+                            <li><a href="https://github.com/ubaumann" target="_blank">GitHub</a></li>
+                            <li><a href="https://www.youtube.com/@infrastructureascode" target="_blank">YouTube</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                    </div> 
+                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                        <p class="pull-right text-right">
+                            <small><em>Proudly powered by <a href="http://docs.getpelican.com/" target="_blank">pelican</a></em></small><br/>
+                            <small><em>Theme and code by <a href="https://github.com/molivier" target="_blank">molivier</a></em></small><br/>
+                            <small>&copy; ubaumann 2020</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Footer -->
+    </body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="In my journey to automate as much as possible, I stumbled upon the problem of keeping the terraform documentation in my README.md up to date with the terraform code. I thought that should be easy, but as it turns out not as easy as I hoped. (At least for …">
+        <meta property="og:description" content="In my journey to automate as much as possible, I stumbled upon the problem of keeping the terraform documentation in my README.md up to date with the terraform code. I thought that should be easy, but as it turns out not as easy as I hoped. (At least for …">
+        <meta name="keywords" content="CI/CD, GitLab, Terraform">
+        <meta name="author" content="juntersander">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="CI/CD pipeline to update README.md with terraform-docs - Infrastructure as Code">
+        <meta name="twitter:description" content="In my journey to automate as much as possible, I stumbled upon the problem of keeping the terraform documentation in my README.md up to date with the terraform code. I thought that should be easy, but as it turns out not as easy as I hoped. (At least for …">
+        <meta property="og:url" content="https://infrastructureascode.ch/cicd-pipeline-to-update-readmemd-with-terraform-docs.html">
+        <meta name="image" property="og:image" content="https://infrastructureascode.ch/images/background.jpg">
+        <meta property="og:image" content="https://infrastructureascode.ch/images/background.jpg">
+        <meta name="twitter:image" content="https://infrastructureascode.ch/images/background.jpg">
+        
+        <link rel="icon" href="https://infrastructureascode.ch/favicon.ico">
+        <!-- Canonical -->
+        <link rel="canonical" href="https://infrastructureascode.ch/cicd-pipeline-to-update-readmemd-with-terraform-docs.html">
+        <!-- /Canonical -->
+
+        <title>CI/CD pipeline to update README.md with terraform-docs - Infrastructure as Code</title>
+        <meta property="og:title" content="CI/CD pipeline to update README.md with terraform-docs - Infrastructure as Code">
+
+        <!-- Stylesheets -->
+        <link href="https://infrastructureascode.ch/theme/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://infrastructureascode.ch/theme/css/fonts.css" rel="stylesheet">
+        <link href="https://infrastructureascode.ch/theme/css/nest.css" rel="stylesheet">
+        <link href="https://infrastructureascode.ch/theme/css/pygment.css" rel="stylesheet">
+        <!-- /Stylesheets -->
+
+        <!-- RSS Feeds -->
+        <link href="https://infrastructureascode.ch/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Infrastructure as Code Full Atom Feed" />
+        <!-- /RSS Feeds -->
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+    </head>
+
+    <body>
+
+        <!-- Header -->
+    <div class="header-container" style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('https://infrastructureascode.ch/images/background.jpg'); background-position: center; background-size: cover;">
+
+            <!-- Static navbar -->
+            <div class="container">
+                <div class="header-nav">
+                    <div class="header-logo">
+                        <a class="pull-left" href="https://infrastructureascode.ch/"><img class="mr20" src="https://infrastructureascode.ch/logo.svg" alt="logo">Infrastructure as Code</a>
+                    </div>
+                    <div class="nav pull-right">
+                                <a href="https://infrastructureascode.ch/">Homepage</a>
+                                <a href="https://infrastructureascode.ch/categories.html">Categories</a>
+                                <a href="https://infrastructureascode.ch/tags.html">Tags</a>
+                            <a  href="https://infrastructureascode.ch/pages/tools.html">Tools</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /Static navbar -->
+
+            <!-- Header -->
+    <!-- Header -->
+    <div class="container header-wrapper">
+        <div class="row">
+              <div class="col-lg-12">
+                  <div class="header-content">
+                      <h1 class="header-title">CI/CD pipeline to update README.md with terraform-docs</h1>
+                      <p class="header-date">By <a href="https://infrastructureascode.ch/author/juntersander.html">juntersander</a>, Fri 19 April 2024, in category <a href="https://infrastructureascode.ch/category/brief_byte.html">Brief Byte</a></p>
+                      <div class="header-underline"></div>
+                      <div class="clearfix"></div>
+                      <p class="pull-right header-tags">
+                          <span class="glyphicon glyphicon-tags mr5" aria-hidden="true"></span>
+<a href="https://infrastructureascode.ch/tag/cicd.html">CI/CD</a>, <a href="https://infrastructureascode.ch/tag/gitlab.html">GitLab</a>, <a href="https://infrastructureascode.ch/tag/terraform.html">Terraform</a>                      </p>
+                  </div>
+              </div>
+        </div>
+    </div>
+    <!-- /Header -->
+            <!-- /Header -->
+
+        </div>
+        <!-- /Header -->
+
+
+        <!-- Content -->
+    <div class="container content">
+        <p>In my journey to automate as much as possible, I stumbled upon the problem of keeping the terraform documentation in my README.md up to date with the terraform code.
+I thought that should be easy, but as it turns out not as easy as I hoped. (At least for now)</p>
+<p>Currently, the simplest way seems to be the following:</p>
+<ol>
+<li>Create a ssh-key:
+    <code>ssh-keygen -t ed25519 -f ./deploy-key</code></li>
+<li>Store the public key as a deploy key in the gitlab project settings (<code>Settings/Repository/Deploy keys</code>)</li>
+<li>Create a CI/CD variable and call it DEPLOY_KEY.
+   Make sure that it's of type "File" and use the private key as value. Be sure to also include the last newline otherwise you will get a `Load Key "path/to/privatekey" error in libcrypto</li>
+<li>Update <code>.gitlab-ci.yml</code></li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nt">update-docs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">stage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">validate</span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alpine:3.19.1</span>
+<span class="w">  </span><span class="nt">before_script</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apk update &amp;&amp; apk add --no-cache git curl tar openssh-client-default</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">curl -sSLo /terraform-docs.tar.gz https://terraform-docs.io/dl/v0.17.0/terraform-docs-v0.17.0-$(uname)-amd64.tar.gz</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tar -xzf /terraform-docs.tar.gz --directory=/</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mv /terraform-docs ./terraform-docs</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">chmod +x terraform-docs</span>
+<span class="w">  </span><span class="nt">script</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./terraform-docs markdown table --output-file README.md --output-mode inject .</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no"># Check if README.md has been modified by terraform-doc</span>
+<span class="w">      </span><span class="no">if git diff --name-only | grep -q &quot;README.md&quot;</span>
+<span class="w">      </span><span class="no">then</span>
+<span class="w">          </span><span class="no"># Commit and push with ci.skip option</span>
+<span class="w">          </span><span class="no">git config --global user.email &quot;tf-bot@ost.ch&quot;</span>
+<span class="w">          </span><span class="no">git config --global user.name &quot;tf-bot&quot;</span>
+<span class="w">          </span><span class="no">git config --global core.sshCommand &#39;ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no&#39;</span>
+<span class="w">          </span><span class="no">git remote set-url origin ssh://git@${CI_SERVER_SHELL_SSH_HOST}:${CI_SERVER_SHELL_SSH_PORT}/${CI_PROJECT_PATH}.git</span>
+<span class="w">          </span><span class="no">mkdir -p ~/.ssh</span>
+<span class="w">          </span><span class="no">cp ${DEPLOY_KEY} ~/.ssh/id_ed25519</span>
+<span class="w">          </span><span class="no">chmod 600 ~/.ssh/id_ed25519</span>
+<span class="w">          </span><span class="no">git add README.md</span>
+<span class="w">          </span><span class="no">git commit -m &quot;Update README.md with terraform-doc&quot; --no-verify</span>
+<span class="w">          </span><span class="no">git push origin HEAD:${CI_COMMIT_BRANCH} -o ci.skip</span>
+<span class="w">      </span><span class="no">fi</span>
+</code></pre></div>
+
+<p>This could be improved and simplified in the future if the <code>CI_JOB_TOKEN</code> has the permissions to also push to the repository.
+It's an open issue on gitlab <a href="https://gitlab.com/gitlab-org/gitlab/-/issues/389060">https://gitlab.com/gitlab-org/gitlab/-/issues/389060</a></p>
+
+
+        
+    </div>
+        <!-- /Content --> 
+
+        <!-- Footer -->
+        <div class="footer gradient-2">
+            <div class="container footer-container ">
+                <div class="row">
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                        <div class="footer-title">Sitemap</div>
+                        <ul class="list-unstyled">
+                            <li><a href="https://infrastructureascode.ch/archives.html">Archives</a></li>
+                            <li><a href="https://infrastructureascode.ch/tags.html">Tags</a></li>
+                            <li><a href="https://infrastructureascode.ch/authors.html">Authors</a></li>
+                            <li><a href="https://infrastructureascode.ch/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">Atom Feed</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                        <div class="footer-title">Social</div>
+                        <ul class="list-unstyled">
+                            <li><a href="https://twitter.com/InfraAsCode" target="_blank">Twitter</a></li>
+                            <li><a href="https://www.linkedin.com/in/ubaumannch/" target="_blank">LinkedIn</a></li>
+                            <li><a href="https://github.com/ubaumann" target="_blank">GitHub</a></li>
+                            <li><a href="https://www.youtube.com/@infrastructureascode" target="_blank">YouTube</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                    </div> 
+                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                        <p class="pull-right text-right">
+                            <small><em>Proudly powered by <a href="http://docs.getpelican.com/" target="_blank">pelican</a></em></small><br/>
+                            <small><em>Theme and code by <a href="https://github.com/molivier" target="_blank">molivier</a></em></small><br/>
+                            <small>&copy; ubaumann 2020</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Footer -->
+    </body>
+</html>
