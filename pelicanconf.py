@@ -5,7 +5,8 @@ import os
 
 AUTHOR = 'ubaumann'
 SITENAME = 'Infrastructure as Code'
-SITEURL = os.environ.get('PELICAN_SITEURL', 'https://infrastructureascode.ch')
+# SITEURL = os.environ.get('PELICAN_SITEURL', 'https://infrastructureascode.ch')
+SITEURL = ""
 
 PATH = 'content'
 

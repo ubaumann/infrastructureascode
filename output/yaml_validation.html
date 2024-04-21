@@ -11,28 +11,28 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="YAML Data Validation - Infrastructure as Code">
         <meta name="twitter:description" content="YAML content can be validated with JSON Schema">
-        <meta property="og:url" content="https://infrastructureascode.ch/yaml_validation.html">
-        <meta name="image" property="og:image" content="https://infrastructureascode.ch/images/vscode_yaml_validation.png">
-        <meta property="og:image" content="https://infrastructureascode.ch/images/vscode_yaml_validation.png">
-        <meta name="twitter:image" content="https://infrastructureascode.ch/images/vscode_yaml_validation.png">
+        <meta property="og:url" content="/yaml_validation.html">
+        <meta name="image" property="og:image" content="/images/vscode_yaml_validation.png">
+        <meta property="og:image" content="/images/vscode_yaml_validation.png">
+        <meta name="twitter:image" content="/images/vscode_yaml_validation.png">
         
-        <link rel="icon" href="https://infrastructureascode.ch/favicon.ico">
+        <link rel="icon" href="/favicon.ico">
         <!-- Canonical -->
-        <link rel="canonical" href="https://infrastructureascode.ch/yaml_validation.html">
+        <link rel="canonical" href="/yaml_validation.html">
         <!-- /Canonical -->
 
         <title>YAML Data Validation - Infrastructure as Code</title>
         <meta property="og:title" content="YAML Data Validation - Infrastructure as Code">
 
         <!-- Stylesheets -->
-        <link href="https://infrastructureascode.ch/theme/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://infrastructureascode.ch/theme/css/fonts.css" rel="stylesheet">
-        <link href="https://infrastructureascode.ch/theme/css/nest.css" rel="stylesheet">
-        <link href="https://infrastructureascode.ch/theme/css/pygment.css" rel="stylesheet">
+        <link href="/theme/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/theme/css/fonts.css" rel="stylesheet">
+        <link href="/theme/css/nest.css" rel="stylesheet">
+        <link href="/theme/css/pygment.css" rel="stylesheet">
         <!-- /Stylesheets -->
 
         <!-- RSS Feeds -->
-        <link href="https://infrastructureascode.ch/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Infrastructure as Code Full Atom Feed" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Infrastructure as Code Full Atom Feed" />
         <!-- /RSS Feeds -->
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -48,19 +48,19 @@
     <body>
 
         <!-- Header -->
-    <div class="header-container" style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('https://infrastructureascode.ch/images/background.jpg'); background-position: center; background-size: cover;">
+    <div class="header-container" style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/images/background.jpg'); background-position: center; background-size: cover;">
 
             <!-- Static navbar -->
             <div class="container">
                 <div class="header-nav">
                     <div class="header-logo">
-                        <a class="pull-left" href="https://infrastructureascode.ch/"><img class="mr20" src="https://infrastructureascode.ch/logo.svg" alt="logo">Infrastructure as Code</a>
+                        <a class="pull-left" href="/"><img class="mr20" src="/logo.svg" alt="logo">Infrastructure as Code</a>
                     </div>
                     <div class="nav pull-right">
-                                <a href="https://infrastructureascode.ch/">Homepage</a>
-                                <a href="https://infrastructureascode.ch/categories.html">Categories</a>
-                                <a href="https://infrastructureascode.ch/tags.html">Tags</a>
-                            <a  href="https://infrastructureascode.ch/pages/tools.html">Tools</a>
+                                <a href="/">Homepage</a>
+                                <a href="/categories.html">Categories</a>
+                                <a href="/tags.html">Tags</a>
+                            <a  href="/pages/tools.html">Tools</a>
                     </div>
                 </div>
             </div>
@@ -73,12 +73,12 @@
               <div class="col-lg-12">
                   <div class="header-content">
                       <h1 class="header-title">YAML Data Validation</h1>
-                      <p class="header-date">By <a href="https://infrastructureascode.ch/author/ubaumann.html">ubaumann</a>, Tue 01 February 2022, in category <a href="https://infrastructureascode.ch/category/devops.html">DevOps</a></p>
+                      <p class="header-date">By <a href="/author/ubaumann.html">ubaumann</a>, Tue 01 February 2022, in category <a href="/category/devops.html">DevOps</a></p>
                       <div class="header-underline"></div>
                       <div class="clearfix"></div>
                       <p class="pull-right header-tags">
                           <span class="glyphicon glyphicon-tags mr5" aria-hidden="true"></span>
-<a href="https://infrastructureascode.ch/tag/cicd.html">CICD</a>, <a href="https://infrastructureascode.ch/tag/devnet.html">DevNet</a>, <a href="https://infrastructureascode.ch/tag/devops.html">DevOps</a>, <a href="https://infrastructureascode.ch/tag/gitops.html">GitOps</a>, <a href="https://infrastructureascode.ch/tag/yaml.html">YAML</a>                      </p>
+<a href="/tag/cicd.html">CICD</a>, <a href="/tag/devnet.html">DevNet</a>, <a href="/tag/devops.html">DevOps</a>, <a href="/tag/gitops.html">GitOps</a>, <a href="/tag/yaml.html">YAML</a>                      </p>
                   </div>
               </div>
         </div>
@@ -532,7 +532,7 @@ urs.yaml: fail: name: Does not match pattern &#39;^[A-Z].*$&#39;
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Schema-Generator">Schema Generator<a class="anchor-link" href="#Schema-Generator">&#182;</a></h2><p>Generators provide a good starting point for creating a schema. Of the JSON Schema generators used, <a href="https://app.quicktype.io/">https://app.quicktype.io/</a> is one of the most popular. The generator only supports JSON so the data need to be converted first when creating the schema. Depending on the structure, a single JSON can be used or many JSON objects in the "Source type" <code>Multiple JSON</code>. Most of the time the generated schema needs adjustment and adding semantic checks like pattern, format, enum or number restrictions but it shortens the time for creating a schema enormously.</p>
-<p><img src="https://infrastructureascode.ch/images/quicktype_json_schema.png" alt="quicktype"></p>
+<p><img src="/images/quicktype_json_schema.png" alt="quicktype"></p>
 
 </div>
 </div>
@@ -541,7 +541,7 @@ urs.yaml: fail: name: Does not match pattern &#39;^[A-Z].*$&#39;
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Editor-Support">Editor Support<a class="anchor-link" href="#Editor-Support">&#182;</a></h2><p>Many editors support JSON Schema for YAML files and thus autocompletion and tooltips as well as validation. This makes editing YAML files easier and less error-prone, since you get feedback before you save the file. Many editors use the <a href="https://github.com/redhat-developer/yaml-language-server">yaml-language-server</a> implementation from Red Hat. The following examples are tested with VS Code with the <a href="https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml">YAML</a> extension.</p>
-<p><img src="https://infrastructureascode.ch/images/vscode_yaml_validation.png" alt="vscode_yaml_validation"></p>
+<p><img src="/images/vscode_yaml_validation.png" alt="vscode_yaml_validation"></p>
 <p>Like other editors the <code>yaml-language-server</code> supports the <a href="https://www.schemastore.org/json/">JSON Schema Store</a>. A list of schemas with associated <code>fileMatch</code> patterns is retrieved from the <a href="https://www.schemastore.org/api/json/catalog.json">API</a>. If a file matches a pattern, the associated scheme is used. For example, all YAML files under the path <code>.github/workflows/*.yaml</code> are automatically validated with the schema <a href="https://json.schemastore.org/github-workflow.json">github-workflow.json</a>.</p>
 <p>To see the list of schemas with YAML files, <code>jq</code> can be used. The following command is limited to the first 15 lines.</p>
 
@@ -721,10 +721,10 @@ urs.yaml: fail: name: Does not match pattern &#39;^[A-Z].*$&#39;
                     <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
                         <div class="footer-title">Sitemap</div>
                         <ul class="list-unstyled">
-                            <li><a href="https://infrastructureascode.ch/archives.html">Archives</a></li>
-                            <li><a href="https://infrastructureascode.ch/tags.html">Tags</a></li>
-                            <li><a href="https://infrastructureascode.ch/authors.html">Authors</a></li>
-                            <li><a href="https://infrastructureascode.ch/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">Atom Feed</a></li>
+                            <li><a href="/archives.html">Archives</a></li>
+                            <li><a href="/tags.html">Tags</a></li>
+                            <li><a href="/authors.html">Authors</a></li>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">Atom Feed</a></li>
                         </ul>
                     </div>
                     <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
