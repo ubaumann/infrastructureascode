@@ -4,7 +4,7 @@ Date: 2024-06-03 20:00
 Author: ubaumann
 
 
-While I'm more comfortable with technical content, I'd like to share my insights from the recent AutoCon1 conference on network automation, with some help from Grammarly and ChatGPT. First and foremost, thank everyone who made this forum possible, from the presentations and discussions to the creative boost provided by the beer.
+While I'm more comfortable with technical content, I'd like to share my insights from the recent AutoCon1 conference on network automation, with some help from Grammarly and ChatGPT. First and foremost, thank you to everyone who made this forum possible, from the presentations and discussions to the creative boost provided by the beer.
 
 The forum asked: "Why haven't we seen full adoption of network automation yet?" After attending my second conference, I asked myself: Are we any closer to achieving this? Unfortunately, not really. Don't get me wrong, we are a passionate, constructive, and highly motivated group. However, the network sector progresses exceptionally slowly.
 I won't delve into the reasons for this sluggishness, but I was surprised to learn that a US ISP still provides X25, T1, Frame Relay, and other services while managing over 100 different platforms. In budget planning, the network often gets overlooked. Due to our responsibility for delivering critical infrastructure, we usually find ourselves pleading for change windows. This generalisation doesn't apply to everyone, of course, but take my words with a grain of salt.
