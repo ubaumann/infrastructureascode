@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="While I&#39;m more comfortable with technical content, I&#39;d like to share my insights from the recent AutoCon1 conference on network automation, with some help from Grammarly and ChatGPT. First and foremost, thank you to everyone who made this forum possible, from the presentations and discussions to the creative boost provided …">
+        <meta property="og:description" content="While I&#39;m more comfortable with technical content, I&#39;d like to share my insights from the recent AutoCon1 conference on network automation, with some help from Grammarly and ChatGPT. First and foremost, thank you to everyone who made this forum possible, from the presentations and discussions to the creative boost provided …">
+        <meta name="keywords" content="">
+        <meta name="author" content="ubaumann">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="From X25 to Kubernetes: Key Takeaways from AutoCon1 - Infrastructure as Code">
+        <meta name="twitter:description" content="While I&#39;m more comfortable with technical content, I&#39;d like to share my insights from the recent AutoCon1 conference on network automation, with some help from Grammarly and ChatGPT. First and foremost, thank you to everyone who made this forum possible, from the presentations and discussions to the creative boost provided …">
+        <meta property="og:url" content="/autocon1.html">
+        <meta name="image" property="og:image" content="/images/background.jpg">
+        <meta property="og:image" content="/images/background.jpg">
+        <meta name="twitter:image" content="/images/background.jpg">
+        
+        <link rel="icon" href="/favicon.ico">
+        <!-- Canonical -->
+        <link rel="canonical" href="/autocon1.html">
+        <!-- /Canonical -->
+
+        <title>From X25 to Kubernetes: Key Takeaways from AutoCon1 - Infrastructure as Code</title>
+        <meta property="og:title" content="From X25 to Kubernetes: Key Takeaways from AutoCon1 - Infrastructure as Code">
+
+        <!-- Stylesheets -->
+        <link href="/theme/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/theme/css/fonts.css" rel="stylesheet">
+        <link href="/theme/css/nest.css" rel="stylesheet">
+        <link href="/theme/css/pygment.css" rel="stylesheet">
+        <!-- /Stylesheets -->
+
+        <!-- RSS Feeds -->
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Infrastructure as Code Full Atom Feed" />
+        <!-- /RSS Feeds -->
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+    </head>
+
+    <body>
+
+        <!-- Header -->
+    <div class="header-container" style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/images/background.jpg'); background-position: center; background-size: cover;">
+
+            <!-- Static navbar -->
+            <div class="container">
+                <div class="header-nav">
+                    <div class="header-logo">
+                        <a class="pull-left" href="/"><img class="mr20" src="/logo.svg" alt="logo">Infrastructure as Code</a>
+                    </div>
+                    <div class="nav pull-right">
+                                <a href="/">Homepage</a>
+                                <a href="/categories.html">Categories</a>
+                                <a href="/tags.html">Tags</a>
+                            <a  href="/pages/tools.html">Tools</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /Static navbar -->
+
+            <!-- Header -->
+    <!-- Header -->
+    <div class="container header-wrapper">
+        <div class="row">
+              <div class="col-lg-12">
+                  <div class="header-content">
+                      <h1 class="header-title">From X25 to Kubernetes: Key Takeaways from AutoCon1</h1>
+                      <p class="header-date">By <a href="/author/ubaumann.html">ubaumann</a>, Mon 03 June 2024, in category <a href="/category/misc.html">misc</a></p>
+                      <div class="header-underline"></div>
+                      <div class="clearfix"></div>
+                      <p class="pull-right header-tags">
+                          <span class="glyphicon glyphicon-tags mr5" aria-hidden="true"></span>
+                      </p>
+                  </div>
+              </div>
+        </div>
+    </div>
+    <!-- /Header -->
+            <!-- /Header -->
+
+        </div>
+        <!-- /Header -->
+
+
+        <!-- Content -->
+    <div class="container content">
+        <p>While I'm more comfortable with technical content, I'd like to share my insights from the recent AutoCon1 conference on network automation, with some help from Grammarly and ChatGPT. First and foremost, thank you to everyone who made this forum possible, from the presentations and discussions to the creative boost provided by the beer.</p>
+<p>The forum asked: "Why haven't we seen full adoption of network automation yet?" After attending my second conference, I asked myself: Are we any closer to achieving this? Unfortunately, not really. Don't get me wrong, we are a passionate, constructive, and highly motivated group. However, the network sector progresses exceptionally slowly.
+I won't delve into the reasons for this sluggishness, but I was surprised to learn that a US ISP still provides X25, T1, Frame Relay, and other services while managing over 100 different platforms. In budget planning, the network often gets overlooked. Due to our responsibility for delivering critical infrastructure, we usually find ourselves pleading for change windows. This generalisation doesn't apply to everyone, of course, so take my words with a grain of salt.</p>
+<p>At AutoCon, experienced professionals with a decade or more of expertise convene alongside newcomers embarking on their journey. Here's a concise summary of some key takeaways from the forum for beginners: "Don't be afraid of failing," "It is a journey," "Just start," "Take advantage of crises," "Kill your babies," and "Have a vision, set achievable goals."
+(For context, the advice to "kill your babies" comes from Robin Gilijamse, who explained that sometimes it's necessary to let go of a product you've developed and move on. For more details, check out the video of his presentation, which will be available in 2 or 3 weeks. However, I want to point out to management that replacing a tool with hundreds of engineering hours covering countless edge cases with Function As A Service (FaaS) over a weekend can be challenging.)</p>
+<p>One key takeaway for me is the need to make it easier for beginners to enter the network automation field. The wide variety of tools and possibilities can be overwhelming. I also reaffirmed my belief in the value of open source. Sharing best practices and more technical success stories could be incredibly beneficial.</p>
+<p>What else would help? If you have any ideas, please let me know. I want to spread one crucial message: "It does not need to be 100% perfect to be shared," and I try to demonstrate this every time I upload a video, write a post, or start a new project (so any imperfections you find are intentional). As we all love open source, it is vital to contribute to projects. Would anyone be interested in watching a live stream or a session recording where I write code and contribute to an open-source project without a clear agenda? Just thinking aloud.</p>
+<h2>Unicorns</h2>
+<p>A key point of debate was the claim that proficient network engineers cannot thrive as software engineers and that those who do are rare 'unicorns.' I strongly disagree. If this were true, I would be incredibly fortunate, as I've encountered many such unicorns in my career. 
+Is it impossible for a top chef to be an excellent baker? Can't a Michelin chef also be a brilliant baker? When we examine the fundamental skills of network and software engineers, they align quite well: problem-solving, creative solution-finding, logical thinking, and many more.
+Could I pass the CCIE written exam tomorrow without studying? - No; Could I configure the CCIE R&amp;S v5 Lab in 5 hours? I could definitely do it in 2 days (and faster with automation). Whether this defines a good network engineer is another big question I want to avoid delving into here.
+Is a brilliant C++ developer necessarily a brilliant Haskell programmer? Not necessarily, but they have the prerequisites to learn it quickly. My brain capacity is definitely limited, and maybe sometimes I hallucinate, thinking I saw, read, or experienced something but can't prove it afterwards. We all are getting older.</p>
+<p>However, my point is that I have met many engineers who are excellent in both network engineering and software engineering. This doesn't mean everyone needs to be brilliant in both domains. We will always need engineers specialised in network architecture and technologies, and vice versa. But, I want to encourage every network or software engineer to believe that it is possible to be good in both areas if they want to.</p>
+<h2>KubeNet</h2>
+<p>Wim Henderickx from Nokia presented the launch of <a href="https://learn.kubenet.dev/">KubeNet</a>, a community-driven initiative to help network engineers understand the vast ecosystem surrounding Kubernetes and how it can benefit network automation. I highly appreciate this effort and am convinced that Kubernetes can significantly boost our progress. Wim puts his heart and soul into this project, but it can only thrive if many join the community, support each other, and create fantastic content.</p>
+<p>Want to see a real-life use case? I recommend watching the video <a href="https://www.youtube.com/watch?v=crmTnB6Zwt8">"How We Are Moving from GitOps to Kubernetes Resource Model in 5G Core"</a> from the last KubeCon.</p>
+<h2>Standards</h2>
+<p>Standards and YANG models were a hot topic at AutoCon. It's important to avoid mixing different types of standards. For example, when discussing models/schemas, we shouldn't bring protocols into the discussion. So, when talking about OpenConfig models, we should not mix in points regarding NetConf or gRPC. Each layer should be addressed separately.
+We have and need standards for communicating with devices (e.g., CLI over Telnet or SSH, SNMP over UDP or TCP, NetConf RPCs over SSH or gRPC). At the encoding level, we also have a variety of options, though modern interfaces often use verbose formats like XML and JSON or binary-encoded options like ProtoBuf or CBOR.</p>
+<p>At the schema layer, where we describe models and structure the data we send or receive, we need two distinct discussions: one about the language itself and the other about the defined models. Schema languages include XSD (widely used for SOAP), YANG (inspired by XSD and used for NetConf, RestConf, and gRPC for network devices), and JSONSchema (used by OpenAPI 3.1 and commonly in REST APIs, especially when interacting with third-party systems).
+For me, the key is having a comfortable way to work with data schema languages within a robust ecosystem. Unfortunately, YANG has advanced features that make auto-generating SDKs and working with it difficult. Unless the industry demands better solutions, we won't see much change. Remember, the hardware we install now will likely run for a long time.
+Regarding standardised models for device communication, we need to be realistic. SNMP, CLI, OpenConfig, and IETF YANG models have shown that it's not practical to have one model that rules them all. Even different platforms or NOS versions will have slight deviations in the models, necessitating a translation layer. Therefore, we should focus on making schema handling more user-friendly.
+One point to consider: Why is YANG not easily consumable? Why do so many render the XML payload for NetConf with jinja2 and treat it like a text file? Is this really the preferred method?</p>
+<p>On the abstraction layer, where we model the intent of the network, a unified approach seems more feasible. We could translate and normalise data from device APIs into abstract models. The IETF is working on many YANG models, such as in the areas of Digital Map and Digital Twin. For more details, check out this <a href="https://datatracker.ietf.org/doc/html/draft-havel-nmop-digital-map">IETF Internet-Draft</a>.
+Creating the abstract data model for an automation task is one of the hardest challenges. It would be helpful to provide best practices and a collection of models. Generating a model that fits 80% of needs is possible but requires extensive work and must be extendable for edge cases. We need to work as a community toward this goal and closely examine and contribute to the IETF's efforts.</p>
+<h2>SSoT</h2>
+<p>As usual, the Single Source of Truth (SSoT) was another big topic. I don't want to delve into details, but I want to highlight a few recurring points. One issue is that, like many buzzwords, interpretations of SSoT vary widely. We need to be clearer about what we are discussing.
+I believe we should focus more on a declarative approach to describing our networks and the intended functions they must fulfill. Additionally, we should expand our focus beyond OSI layers 1-4 to include applications and services. Do we really need to define the VLAN in our abstract network automation model?</p>
+<p>While I can't argue against the statement, "A greenfield network will be a brownfield network next week," it's imperative that we shift our mindset. Rather than striving to discover and update every aspect of our management systems, we must reconsider our approach. However, this shift in thinking will undoubtedly face resistance, particularly from software vendors whose primary business involves navigating the complexities created by network engineers over time. Unless we alter our approach to a declarative approach, we risk impeding the progress of automation and perpetuating the question: "Why haven't we seen full adoption of network automation yet?"</p>
+<p>As the bus driver at our social event wisely said, "If you look to your right, you will not see something on the left." Let's keep looking in all directions to find new solutions for network automation.</p>
+
+
+        
+    </div>
+        <!-- /Content --> 
+
+        <!-- Footer -->
+        <div class="footer gradient-2">
+            <div class="container footer-container ">
+                <div class="row">
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                        <div class="footer-title">Sitemap</div>
+                        <ul class="list-unstyled">
+                            <li><a href="/archives.html">Archives</a></li>
+                            <li><a href="/tags.html">Tags</a></li>
+                            <li><a href="/authors.html">Authors</a></li>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">Atom Feed</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                        <div class="footer-title">Social</div>
+                        <ul class="list-unstyled">
+                            <li><a href="https://twitter.com/InfraAsCode" target="_blank">Twitter</a></li>
+                            <li><a href="https://www.linkedin.com/in/ubaumannch/" target="_blank">LinkedIn</a></li>
+                            <li><a href="https://github.com/ubaumann" target="_blank">GitHub</a></li>
+                            <li><a href="https://www.youtube.com/@infrastructureascode" target="_blank">YouTube</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                    </div> 
+                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                        <p class="pull-right text-right">
+                            <small><em>Proudly powered by <a href="http://docs.getpelican.com/" target="_blank">pelican</a></em></small><br/>
+                            <small><em>Theme and code by <a href="https://github.com/molivier" target="_blank">molivier</a></em></small><br/>
+                            <small>&copy; ubaumann 2020</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Footer -->
+    </body>
+</html>
