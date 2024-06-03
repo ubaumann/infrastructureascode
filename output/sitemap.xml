@@ -6,36 +6,43 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2024-04-21T18:25:30-00:00</lastmod>
+<lastmod>2024-06-03T12:07:06-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2024-04-21T18:25:30-00:00</lastmod>
+<lastmod>2024-06-03T12:07:06-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/author/juntersander.html</loc>
-<lastmod>2024-04-21T18:25:30-00:00</lastmod>
+<lastmod>2024-06-03T12:07:06-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/author/ubaumann.html</loc>
-<lastmod>2024-04-21T18:25:30-00:00</lastmod>
+<lastmod>2024-06-03T12:07:06-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/authors.html</loc>
-<lastmod>2024-04-21T18:25:30-00:00</lastmod>
+<lastmod>2024-06-03T12:07:06-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/autocon1.html</loc>
+<lastmod>2024-06-03T20:00:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -55,7 +62,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2024-04-21T18:25:30-00:00</lastmod>
+<lastmod>2024-06-03T12:07:06-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -160,7 +167,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/pages/tools.html</loc>
-<lastmod>2024-04-21T18:25:30-00:00</lastmod>
+<lastmod>2024-06-03T12:07:06-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -195,7 +202,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2024-04-21T18:25:30-00:00</lastmod>
+<lastmod>2024-06-03T12:07:06-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
