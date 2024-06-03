@@ -5,238 +5,245 @@ xmlns:xhtml="http://www.w3.org/1999/xhtml"
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>https://infrastructureascode.ch/</loc>
-<lastmod>2024-04-20T01:26:05-00:00</lastmod>
+<loc>/</loc>
+<lastmod>2024-06-03T16:16:23-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/archives.html</loc>
-<lastmod>2024-04-20T01:26:05-00:00</lastmod>
+<loc>/archives.html</loc>
+<lastmod>2024-06-03T16:16:23-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/author/juntersander.html</loc>
-<lastmod>2024-04-20T01:26:05-00:00</lastmod>
+<loc>/author/juntersander.html</loc>
+<lastmod>2024-06-03T16:16:23-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/author/ubaumann.html</loc>
-<lastmod>2024-04-20T01:26:05-00:00</lastmod>
+<loc>/author/ubaumann.html</loc>
+<lastmod>2024-06-03T16:16:23-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/authors.html</loc>
-<lastmod>2024-04-20T01:26:05-00:00</lastmod>
+<loc>/authors.html</loc>
+<lastmod>2024-06-03T16:16:23-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/build-cron-schedule-expression-online.html</loc>
+<loc>/autocon1.html</loc>
+<lastmod>2024-06-03T20:00:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/build-cron-schedule-expression-online.html</loc>
 <lastmod>2021-08-16T09:02:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/calculate-the-logging-level-from-the-verbose-option-count.html</loc>
+<loc>/calculate-the-logging-level-from-the-verbose-option-count.html</loc>
 <lastmod>2021-07-31T12:04:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/categories.html</loc>
-<lastmod>2024-04-20T01:26:05-00:00</lastmod>
+<loc>/categories.html</loc>
+<lastmod>2024-06-03T16:16:23-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/cicd-pipeline-to-update-readmemd-with-terraform-docs.html</loc>
+<loc>/cicd-pipeline-to-update-readmemd-with-terraform-docs.html</loc>
 <lastmod>2024-04-19T20:28:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/facelifting-for-the-sandboxes.html</loc>
+<loc>/facelifting-for-the-sandboxes.html</loc>
 <lastmod>2024-01-17T18:03:00+01:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/fstringhelp.html</loc>
+<loc>/fstringhelp.html</loc>
 <lastmod>2022-04-13T11:07:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/git-bisect.html</loc>
+<loc>/git-bisect.html</loc>
 <lastmod>2022-10-04T12:36:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/git101.html</loc>
+<loc>/git101.html</loc>
 <lastmod>2020-07-17T12:00:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/hello-world.html</loc>
+<loc>/hello-world.html</loc>
 <lastmod>2020-07-01T12:00:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/highlighting-your-search-with-grep.html</loc>
+<loc>/highlighting-your-search-with-grep.html</loc>
 <lastmod>2020-07-17T13:28:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/if-you-use-git-log-remember-a-dog.html</loc>
+<loc>/if-you-use-git-log-remember-a-dog.html</loc>
 <lastmod>2021-08-10T15:50:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/jc-converts-linux-command-output-to-json.html</loc>
+<loc>/jc-converts-linux-command-output-to-json.html</loc>
 <lastmod>2022-02-02T19:18:00+01:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/netaut-fs24-lecture-recording.html</loc>
+<loc>/netaut-fs24-lecture-recording.html</loc>
 <lastmod>2024-03-25T16:28:00+01:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/nettowel-day.html</loc>
+<loc>/nettowel-day.html</loc>
 <lastmod>2022-05-25T16:17:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/nornir-rich-v015.html</loc>
+<loc>/nornir-rich-v015.html</loc>
 <lastmod>2022-10-02T11:37:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/nuts-is-listed-as-pytest-plugin.html</loc>
+<loc>/nuts-is-listed-as-pytest-plugin.html</loc>
 <lastmod>2023-08-21T20:29:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/nuts-v320.html</loc>
+<loc>/nuts-v320.html</loc>
 <lastmod>2023-08-11T18:15:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/pages/tools.html</loc>
-<lastmod>2024-04-20T01:26:05-00:00</lastmod>
+<loc>/pages/tools.html</loc>
+<lastmod>2024-06-03T16:16:23-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/pydantics-version-2s-beforevalidator-and-aliaspath.html</loc>
+<loc>/pydantics-version-2s-beforevalidator-and-aliaspath.html</loc>
 <lastmod>2024-01-11T19:31:00+01:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/python-built-in-next-supports-default-value.html</loc>
+<loc>/python-built-in-next-supports-default-value.html</loc>
 <lastmod>2021-08-17T15:31:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/python-dataclass-decorator.html</loc>
+<loc>/python-dataclass-decorator.html</loc>
 <lastmod>2021-08-12T01:52:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/python-security-considerations.html</loc>
+<loc>/python-security-considerations.html</loc>
 <lastmod>2021-08-10T10:11:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/tags.html</loc>
-<lastmod>2024-04-20T01:26:05-00:00</lastmod>
+<loc>/tags.html</loc>
+<lastmod>2024-06-03T16:16:23-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/typer-file-autocompletion-workaround.html</loc>
+<loc>/typer-file-autocompletion-workaround.html</loc>
 <lastmod>2022-05-08T20:14:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/use-dotenv-as-a-configuration-file-for-your-typer-tool.html</loc>
+<loc>/use-dotenv-as-a-configuration-file-for-your-typer-tool.html</loc>
 <lastmod>2022-03-13T14:03:00+01:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/video-network-automation-with-cicd.html</loc>
+<loc>/video-network-automation-with-cicd.html</loc>
 <lastmod>2023-06-08T11:22:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/wemulate-container.html</loc>
+<loc>/wemulate-container.html</loc>
 <lastmod>2023-08-17T16:18:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/yaml_validation.html</loc>
+<loc>/yaml_validation.html</loc>
 <lastmod>2022-02-01T12:00:00+01:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://infrastructureascode.ch/yang_ng.html</loc>
+<loc>/yang_ng.html</loc>
 <lastmod>2024-04-01T22:35:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
