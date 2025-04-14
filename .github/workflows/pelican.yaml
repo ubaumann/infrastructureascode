@@ -55,9 +55,9 @@ jobs:
           sleep 5
       
       - name: Screenshot Website
-        uses: AxolStudio/screenshot-website
+        uses: JonathanTreffler/full-website-screenshot-action@v1.0
         with:
-          source: http://127.0.0.1:8000
+          url: http://127.0.0.1:8000
           destination: screenshot.png
       
       - name: Kill Serve webpage
