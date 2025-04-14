@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="🚀 How to Build and Deploy Your Own Terraform Provider with Infrahub If you&#39;re venturing into the world of custom Terraform providers and want to leverage the power of Infrahub, this guide is your fast track. We&#39;ll walk through everything from cloning the template to deploying your provider to a private …">
+        <meta property="og:description" content="🚀 How to Build and Deploy Your Own Terraform Provider with Infrahub If you&#39;re venturing into the world of custom Terraform providers and want to leverage the power of Infrahub, this guide is your fast track. We&#39;ll walk through everything from cloning the template to deploying your provider to a private …">
+        <meta name="keywords" content="">
+        <meta name="author" content="mmartinez">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Creating your own Infrahub Terraform Provider - Infrastructure as Code">
+        <meta name="twitter:description" content="🚀 How to Build and Deploy Your Own Terraform Provider with Infrahub If you&#39;re venturing into the world of custom Terraform providers and want to leverage the power of Infrahub, this guide is your fast track. We&#39;ll walk through everything from cloning the template to deploying your provider to a private …">
+        <meta property="og:url" content="/infrahub_terraform.html">
+        <meta name="image" property="og:image" content="/images/background.jpg">
+        <meta property="og:image" content="/images/background.jpg">
+        <meta name="twitter:image" content="/images/background.jpg">
+        
+        <link rel="icon" href="/favicon.ico">
+        <!-- Canonical -->
+        <link rel="canonical" href="/infrahub_terraform.html">
+        <!-- /Canonical -->
+
+        <title>Creating your own Infrahub Terraform Provider - Infrastructure as Code</title>
+        <meta property="og:title" content="Creating your own Infrahub Terraform Provider - Infrastructure as Code">
+
+        <!-- Stylesheets -->
+        <link href="/theme/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/theme/css/fonts.css" rel="stylesheet">
+        <link href="/theme/css/nest.css" rel="stylesheet">
+        <link href="/theme/css/pygment.css" rel="stylesheet">
+        <!-- /Stylesheets -->
+
+        <!-- RSS Feeds -->
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Infrastructure as Code Full Atom Feed" />
+        <!-- /RSS Feeds -->
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+    </head>
+
+    <body>
+
+        <!-- Header -->
+    <div class="header-container" style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/images/background.jpg'); background-position: center; background-size: cover;">
+
+            <!-- Static navbar -->
+            <div class="container">
+                <div class="header-nav">
+                    <div class="header-logo">
+                        <a class="pull-left" href="/"><img class="mr20" src="/logo.svg" alt="logo">Infrastructure as Code</a>
+                    </div>
+                    <div class="nav pull-right">
+                                <a href="/">Homepage</a>
+                                <a href="/categories.html">Categories</a>
+                                <a href="/tags.html">Tags</a>
+                            <a  href="/pages/tools.html">Tools</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /Static navbar -->
+
+            <!-- Header -->
+    <!-- Header -->
+    <div class="container header-wrapper">
+        <div class="row">
+              <div class="col-lg-12">
+                  <div class="header-content">
+                      <h1 class="header-title">Creating your own Infrahub Terraform Provider</h1>
+                      <p class="header-date">By <a href="/author/mmartinez.html">mmartinez</a>, Mon 14 April 2025, in category <a href="/category/misc.html">misc</a></p>
+                      <div class="header-underline"></div>
+                      <div class="clearfix"></div>
+                      <p class="pull-right header-tags">
+                          <span class="glyphicon glyphicon-tags mr5" aria-hidden="true"></span>
+                      </p>
+                  </div>
+              </div>
+        </div>
+    </div>
+    <!-- /Header -->
+            <!-- /Header -->
+
+        </div>
+        <!-- /Header -->
+
+
+        <!-- Content -->
+    <div class="container content">
+        <h1>🚀 How to Build and Deploy Your Own Terraform Provider with Infrahub</h1>
+<p>If you're venturing into the world of custom Terraform providers and want to leverage the power of Infrahub, this guide is your fast track. We'll walk through everything from cloning the template to deploying your provider to a private registry. Whether you're automating infrastructure workflows or integrating a new API, this setup will get you running in no time.</p>
+<hr>
+<h2>🧭 Choosing Your Deployment Path</h2>
+<p>If you're planning to deploy your provider to the private registry available at <a href="https://github.com/marcom4rtinez/terraform-registry">marcom4rtinez/terraform-registry</a>, be sure to follow <strong>all the steps</strong> outlined in this guide—especially Steps 3 and 4 which cover packaging and deployment.</p>
+<blockquote>
+<p>💡 <strong>Tip:</strong> If you're not using this private registry and just want to run the provider locally or publish it elsewhere, you can <strong>skip Steps 3 and 4</strong>.</p>
+</blockquote>
+<hr>
+<h2>🔧 Step 1: Clone the Terraform Provider Template</h2>
+<p>Start by using the <a href="https://github.com/marcom4rtinez/terraform-provider-infrahub">Terraform Provider Infrahub Template</a>. Hit the <strong>"Use this template"</strong> button on GitHub and create a new repository.</p>
+<blockquote>
+<p>⚠️ <strong>Important:</strong> Name your repo using the <code>terraform-provider-&lt;your-name&gt;</code> convention (e.g. <code>terraform-provider-infrahub</code>). This is required by Terraform.</p>
+</blockquote>
+<p>Once your repo is created, go ahead and clone it locally:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your-username/terraform-provider-infrahub.git
+<span class="nb">cd</span><span class="w"> </span>terraform-provider-infrahub
+</code></pre></div>
+
+<hr>
+<h2>⚙️ Step 2: Generate the Provider</h2>
+<p>Put your GraphQL queries inside the <code>gql/</code> directory — these are the definitions your provider will use to interact with Infrahub.</p>
+<p>An example could look like the following:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">query</span><span class="w"> </span><span class="nx">Devicequery</span><span class="p">(</span><span class="err">$</span><span class="nx">device_name</span><span class="p">:</span><span class="w"> </span><span class="nx">String</span><span class="p">!)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">InfraDevice</span><span class="p">(</span><span class="nx">name__value</span><span class="p">:</span><span class="w"> </span><span class="err">$</span><span class="nx">device_name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">edges</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">node</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">id</span>
+<span class="w">            </span><span class="nx">name</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">value</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="nx">role</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">value</span>
+<span class="w">              </span><span class="nx">color</span>
+<span class="w">              </span><span class="nx">description</span>
+<span class="w">              </span><span class="nx">id</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="nx">platform</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">node</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">id</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="nx">primary_address</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">node</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">id</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="nx">status</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">id</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="nx">topology</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">node</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">id</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="nx">device_type</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">node</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">id</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="nx">asn</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">node</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">asn</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                  </span><span class="nx">id</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="nx">description</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">value</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Repeat this step with as many queries as desired. Based on the type of the query it will change the terraform type. GQL queries will generate Terraform <code>data sources</code>, GQL mutations will generate <code>resources</code>. For further information consult <code>gql/README.md</code> in the template repository.</p>
+<blockquote>
+<p>⚠️ <strong>Important:</strong> Make sure your Infrahub instance is accessible. The next step will pull the schema from your infrahub instance to do type checking of the gql files.</p>
+</blockquote>
+<p>Set the environment variable for your Infrahub instance:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">INFRAHUB_SERVER</span><span class="o">=</span><span class="s2">&quot;http://localhost:8000&quot;</span>
+</code></pre></div>
+
+<p>Now generate the SDK, provider logic, and documentation:</p>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>all
+</code></pre></div>
+
+<p>That’s it! You now have a working provider. 🎉 From here, you can test it locally or proceed to deployment.</p>
+<hr>
+<h2>🚀 Step 3: Prepare for Deployment</h2>
+<p>Publishing the provider requires a <strong>GPG key</strong> for signing and a <strong>GitHub token</strong> with access to the original repository. These are used by <strong>GoReleaser</strong> to publish the release artifacts.</p>
+<blockquote>
+<p>💡 <strong>Tip:</strong> <a href="https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key">Create GPG Key Pairs</a></p>
+</blockquote>
+<p>Before you can publish your provider, set the following environment variables:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">GPG_FINGERPRINT</span><span class="o">=</span>9A52F2BE41E9C446A902C723B53E44105C84C057
+<span class="nb">export</span><span class="w"> </span><span class="nv">GPG_PUBLIC_KEY</span><span class="o">=</span><span class="k">$(</span>gpg<span class="w"> </span>--armor<span class="w"> </span>--export<span class="w"> </span><span class="nv">$GPG_FINGERPRINT</span><span class="k">)</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">GITHUB_TOKEN</span><span class="o">=</span>your_github_token
+<span class="nb">export</span><span class="w"> </span><span class="nv">TERRAFORM_REGISTRY_ENDPOINT</span><span class="o">=</span><span class="s2">&quot;http://localhost:8080/v1/providers/marcom4rtinez/infrahub-main/upload&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">RELEASE_URL</span><span class="o">=</span><span class="s2">&quot;https://github.com/marcom4rtinez/terraform-provider-infrahub/releases/download&quot;</span>
+</code></pre></div>
+
+<hr>
+<h2>📦 Step 4: Deploy to a Private Registry</h2>
+<p>If you're using <a href="https://github.com/marcom4rtinez/terraform-registry">this Terraform Registry</a>, you're ready to go. Otherwise, you’ll need to tweak the <code>makefile</code> accordingly.</p>
+<p>Tag your release before deployment:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>tag<span class="w"> </span>-a<span class="w"> </span>v1.4<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;My awesome Infrahub Terraform Provider&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>--tags
+</code></pre></div>
+
+<p>Then, deploy:</p>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>generate_deploy
+</code></pre></div>
+
+<p>Your provider will now be published in GitHub Releases and available in your registry.</p>
+<hr>
+<h2>🛠 Local Development Setup</h2>
+<p>To work with your provider locally, update your Terraform config:</p>
+<p>Edit <code>~/.terraformrc</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">provider_installation</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nb">dev_overrides</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;registry.terraform.io/marcom4rtinez/infrahub&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/Users/youruser/go/bin&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nb">direct</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Build and install locally:</p>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>all<span class="w">    </span><span class="c1"># To build and generate the provider</span>
+make<span class="w">        </span><span class="c1"># To rebuild and install the provider locally</span>
+</code></pre></div>
+
+<p>Then use it in your Terraform config:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">terraform</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nb">required_providers</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">infrahub</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="na">source</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;registry.marcomartinez.ch/marcom4rtinez/infrahub&quot;</span>
+<span class="w">      </span><span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr>
+<h2>📝 Generating Documentation &amp; Examples</h2>
+<p>Docs are auto-generated as part of the build process, but you can also run it manually:</p>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>generate
+</code></pre></div>
+
+<p>To enhance the documentation with examples, drop your <code>.tf</code> files in the <code>example/</code> folder and check out <code>example/README.md</code> for guidance.</p>
+<hr>
+<h2>🎯 Wrapping Up</h2>
+<p>With this setup, you're now fully equipped to develop, test, and deploy your own Terraform provider powered by Infrahub. Whether you're automating infrastructure or building integrations, this template gives you a rock-solid foundation.</p>
+<p>Got questions or building something cool with Infrahub? Let me know — I’d love to see what you're creating!</p>
+<p>Feel free to reach out to me on <a href="https://www.linkedin.com/in/marco-martinez-364461243/">Linkedin</a>, I'm happy to have a conversation!</p>
+
+
+        
+    </div>
+        <!-- /Content --> 
+
+        <!-- Footer -->
+        <div class="footer gradient-2">
+            <div class="container footer-container ">
+                <div class="row">
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                        <div class="footer-title">Sitemap</div>
+                        <ul class="list-unstyled">
+                            <li><a href="/archives.html">Archives</a></li>
+                            <li><a href="/tags.html">Tags</a></li>
+                            <li><a href="/authors.html">Authors</a></li>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">Atom Feed</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                        <div class="footer-title">Social</div>
+                        <ul class="list-unstyled">
+                            <li><a href="https://twitter.com/InfraAsCode" target="_blank">Twitter</a></li>
+                            <li><a href="https://www.linkedin.com/in/ubaumannch/" target="_blank">LinkedIn</a></li>
+                            <li><a href="https://github.com/ubaumann" target="_blank">GitHub</a></li>
+                            <li><a href="https://www.youtube.com/@infrastructureascode" target="_blank">YouTube</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                    </div> 
+                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                        <p class="pull-right text-right">
+                            <small><em>Proudly powered by <a href="http://docs.getpelican.com/" target="_blank">pelican</a></em></small><br/>
+                            <small><em>Theme and code by <a href="https://github.com/molivier" target="_blank">molivier</a></em></small><br/>
+                            <small>&copy; ubaumann 2020</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Footer -->
+    </body>
+</html>
