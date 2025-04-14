@@ -25,7 +25,7 @@ jobs:
           virtualenvs-in-project: true
 
       - name: Cache Poetry virtualenv
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         id: cached-poetry-dependencies
         with:
           path: .venv
@@ -55,10 +55,13 @@ jobs:
           sleep 5
       
       - name: Screenshot Website
-        uses: swinton/screenshot-website@v1.x
+        uses: flameddd/screenshots-ci-action@v2.1.0
         with:
-          source: http://127.0.0.1:8000
-          destination: screenshot.png
+          url: http://127.0.0.1:8000
+      - uses: actions/upload-artifact@v4
+        with:
+          path: screenshots
+          name: Download-screenshots
       
       - name: Kill Serve webpage
         run: pkill "make"
@@ -87,7 +90,7 @@ jobs:
           virtualenvs-in-project: true
 
       - name: Cache Poetry virtualenv
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         id: cached-poetry-dependencies
         with:
           path: .venv
