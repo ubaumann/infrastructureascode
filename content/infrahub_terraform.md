@@ -1,6 +1,8 @@
 Title: Creating your own Infrahub Terraform Provider
 Slug: infrahub_terraform
 Date: 2025-04-14 20:00
+Tags: Terraform, Infrahub
+Category: DevOps
 Author: mmartinez
 
 
