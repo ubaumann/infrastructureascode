@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="🌐 How to use your Custom Infrahub Terraform Provider Working with custom Terraform providers unlocks a whole new level of automation and flexibility. With the Infrahub Terraform provider, you can define, query, and manage infrastructure in a modular, declarative way—perfect for modern network and infrastructure workflows. In this guide, you …">
+        <meta property="og:description" content="🌐 How to use your Custom Infrahub Terraform Provider Working with custom Terraform providers unlocks a whole new level of automation and flexibility. With the Infrahub Terraform provider, you can define, query, and manage infrastructure in a modular, declarative way—perfect for modern network and infrastructure workflows. In this guide, you …">
+        <meta name="keywords" content="Infrahub, Terraform">
+        <meta name="author" content="mmartinez">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Using your own Infrahub Provider - Infrastructure as Code">
+        <meta name="twitter:description" content="🌐 How to use your Custom Infrahub Terraform Provider Working with custom Terraform providers unlocks a whole new level of automation and flexibility. With the Infrahub Terraform provider, you can define, query, and manage infrastructure in a modular, declarative way—perfect for modern network and infrastructure workflows. In this guide, you …">
+        <meta property="og:url" content="/first_steps_infrahub_terraform.html">
+        <meta name="image" property="og:image" content="/images/background.jpg">
+        <meta property="og:image" content="/images/background.jpg">
+        <meta name="twitter:image" content="/images/background.jpg">
+        
+        <link rel="icon" href="/favicon.ico">
+        <!-- Canonical -->
+        <link rel="canonical" href="/first_steps_infrahub_terraform.html">
+        <!-- /Canonical -->
+
+        <title>Using your own Infrahub Provider - Infrastructure as Code</title>
+        <meta property="og:title" content="Using your own Infrahub Provider - Infrastructure as Code">
+
+        <!-- Stylesheets -->
+        <link href="/theme/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/theme/css/fonts.css" rel="stylesheet">
+        <link href="/theme/css/nest.css" rel="stylesheet">
+        <link href="/theme/css/pygment.css" rel="stylesheet">
+        <!-- /Stylesheets -->
+
+        <!-- RSS Feeds -->
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Infrastructure as Code Full Atom Feed" />
+        <!-- /RSS Feeds -->
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+    </head>
+
+    <body>
+
+        <!-- Header -->
+    <div class="header-container" style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/images/background.jpg'); background-position: center; background-size: cover;">
+
+            <!-- Static navbar -->
+            <div class="container">
+                <div class="header-nav">
+                    <div class="header-logo">
+                        <a class="pull-left" href="/"><img class="mr20" src="/logo.svg" alt="logo">Infrastructure as Code</a>
+                    </div>
+                    <div class="nav pull-right">
+                                <a href="/">Homepage</a>
+                                <a href="/categories.html">Categories</a>
+                                <a href="/tags.html">Tags</a>
+                            <a  href="/pages/tools.html">Tools</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /Static navbar -->
+
+            <!-- Header -->
+    <!-- Header -->
+    <div class="container header-wrapper">
+        <div class="row">
+              <div class="col-lg-12">
+                  <div class="header-content">
+                      <h1 class="header-title">Using your own Infrahub Provider</h1>
+                      <p class="header-date">By <a href="/author/mmartinez.html">mmartinez</a>, Mon 14 April 2025, in category <a href="/category/devops.html">DevOps</a></p>
+                      <div class="header-underline"></div>
+                      <div class="clearfix"></div>
+                      <p class="pull-right header-tags">
+                          <span class="glyphicon glyphicon-tags mr5" aria-hidden="true"></span>
+<a href="/tag/infrahub.html">Infrahub</a>, <a href="/tag/terraform.html">Terraform</a>                      </p>
+                  </div>
+              </div>
+        </div>
+    </div>
+    <!-- /Header -->
+            <!-- /Header -->
+
+        </div>
+        <!-- /Header -->
+
+
+        <!-- Content -->
+    <div class="container content">
+        <h1>🌐 How to use your Custom Infrahub Terraform Provider</h1>
+<p>Working with custom Terraform providers unlocks a whole new level of automation and flexibility. With the <strong>Infrahub Terraform provider</strong>, you can define, query, and manage infrastructure in a modular, declarative way—perfect for modern network and infrastructure workflows.</p>
+<p>In this guide, you’ll learn how to:</p>
+<ul>
+<li>🔧 Configure the Infrahub provider  </li>
+<li>🔁 Chain data sources with resources for clean, reusable setups  </li>
+<li>🚀 Use Terraform's workflow to deploy your infrastructure  </li>
+<li>🧱 Provision both single and bulk devices  </li>
+</ul>
+<hr>
+<h2>⚠️ Disclaimer</h2>
+<p>🛠️ Haven’t generated your provider yet?</p>
+<p>Before using the examples above, make sure you've created your custom Terraform provider with Infrahub. You can follow the step-by-step guide at <a href="/infrahub_terraform.html">Build your own Infrahub Terraform Provider</a></p>
+<p>This blog assumes your provider is already built and ready to be used in your Terraform workflow.</p>
+<hr>
+<h2>🔧 Step 1: Configure the Infrahub Provider</h2>
+<p>Before you run any Terraform commands, you need to set up your provider in <code>main.tf</code>. This includes specifying where to find the provider and how to authenticate with Infrahub.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">terraform</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nb">required_providers</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">infrahub</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="na">source</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;infrastructureascode.ch/marcom4rtinez/infrahub-main&quot;</span>
+<span class="w">      </span><span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.0.2&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;infrahub&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">api_key</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;XXXXXXXXXXXXX&quot;</span>
+<span class="w">  </span><span class="na">infrahub_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;http://localhost:8000&quot;</span>
+<span class="w">  </span><span class="na">branch</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;main&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<blockquote>
+<p>🧠 <strong>Pro Tip:</strong> This setup allows Terraform to connect to your Infrahub instance and manage resources declaratively. Working on different branches is also possible.</p>
+</blockquote>
+<hr>
+<h2>📦 Step 2: Run Terraform Commands</h2>
+<p>With your provider configured, you can now use Terraform’s core workflow:</p>
+<div class="highlight"><pre><span></span><code>terraform<span class="w"> </span>init
+terraform<span class="w"> </span>plan
+terraform<span class="w"> </span>apply<span class="w"> </span>-auto-approve
+</code></pre></div>
+
+<ul>
+<li><code>terraform init</code> — Downloads and sets up the provider.</li>
+<li><code>terraform plan</code> — Shows a preview of what will be created/changed.</li>
+<li><code>terraform apply -auto-approve</code> — Applies changes without prompting.</li>
+</ul>
+<hr>
+<h2>🧩 Power of Chaining Data Sources and Resources</h2>
+<p>One of the biggest strengths of Terraform is how <strong>data sources and resources can be chained together</strong>. This makes your configuration <strong>modular</strong>, <strong>reusable</strong>, and <strong>readable</strong>.</p>
+<p>For example:</p>
+<ul>
+<li>Pull metadata from Infrahub (like country, platform, device type)  </li>
+<li>Use that metadata directly when creating new infrastructure</li>
+</ul>
+<p>This approach avoids hardcoding values, allows consistent references across resources, and ensures changes in upstream data automatically propagate through your configuration.</p>
+<hr>
+<h2>📚 Example 1: Query All Devices</h2>
+<p>Use a data source to list all devices in your Infrahub instance:</p>
+<div class="highlight"><pre><span></span><code><span class="kr">data</span><span class="w"> </span><span class="nc">&quot;infrahub_devices&quot;</span><span class="w"> </span><span class="nv">&quot;all_devices&quot;</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="kr">output</span><span class="w"> </span><span class="nv">&quot;devices_all_devices&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.infrahub_devices.all_devices</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Great for visibility, inventory audits, or referencing existing infrastructure.</p>
+<hr>
+<h2>🛠 Example 2: Define a Single Device with Chained Data Sources</h2>
+<p>This example combines multiple data sources (e.g., country, topology, device type) and uses them to create a device resource.</p>
+<div class="highlight"><pre><span></span><code><span class="kr">data</span><span class="w"> </span><span class="nc">&quot;infrahub_country&quot;</span><span class="w"> </span><span class="nv">&quot;germany&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">country_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Germany&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">data</span><span class="w"> </span><span class="nc">&quot;infrahub_topology&quot;</span><span class="w"> </span><span class="nv">&quot;de1-pod1&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">topology_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;de1-pod1&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">data</span><span class="w"> </span><span class="nc">&quot;infrahub_devicetype&quot;</span><span class="w"> </span><span class="nv">&quot;ccs&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">device_type_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;CCS-720DP-48S-2F&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">data</span><span class="w"> </span><span class="nc">&quot;infrahub_autonomoussystem&quot;</span><span class="w"> </span><span class="nv">&quot;AS174&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">as_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;AS174&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">data</span><span class="w"> </span><span class="nc">&quot;infrahub_platform&quot;</span><span class="w"> </span><span class="nv">&quot;Arista&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">platform_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Arista EOS&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">data</span><span class="w"> </span><span class="nc">&quot;infrahub_ipaddress&quot;</span><span class="w"> </span><span class="nv">&quot;mgmt_address&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">ip_address_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;10.0.0.1/24&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;infrahub_device&quot;</span><span class="w"> </span><span class="nv">&quot;device_res&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">name_value</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;switch27&quot;</span>
+<span class="w">  </span><span class="na">asn_node_id</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="nv">data.infrahub_autonomoussystem.AS174.id</span>
+<span class="w">  </span><span class="na">device_type_node_id</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">data.infrahub_devicetype.ccs.id</span>
+<span class="w">  </span><span class="na">location_node_id</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">data.infrahub_country.germany.id</span>
+<span class="w">  </span><span class="na">platform_node_id</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">data.infrahub_platform.Arista.id</span>
+<span class="w">  </span><span class="na">primary_address_node_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.infrahub_ipaddress.mgmt_address.id</span>
+<span class="w">  </span><span class="na">status_value</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;active&quot;</span>
+<span class="w">  </span><span class="na">topology_node_id</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">data.infrahub_topology.de1-pod1.id</span>
+<span class="w">  </span><span class="na">role_value</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;leaf&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<blockquote>
+<p>🔗 <strong>Why this matters:</strong> All values are derived dynamically from upstream sources, making your infrastructure definition both readable and DRY.</p>
+</blockquote>
+<hr>
+<h2>⚙️ Example 3: Bulk Provision Devices with <code>for_each</code></h2>
+<p>Need to spin up a fleet of routers? Use a loop to define hundreds of resources cleanly:</p>
+<div class="highlight"><pre><span></span><code><span class="kr">data</span><span class="w"> </span><span class="nc">&quot;infrahub_country&quot;</span><span class="w"> </span><span class="nv">&quot;usa&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">country_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;United States of America&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">data</span><span class="w"> </span><span class="nc">&quot;infrahub_topology&quot;</span><span class="w"> </span><span class="nv">&quot;fra05-pod1&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">topology_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;fra05-pod1&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">data</span><span class="w"> </span><span class="nc">&quot;infrahub_devicetype&quot;</span><span class="w"> </span><span class="nv">&quot;ncs&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">device_type_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;NCS-5501-SE&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">data</span><span class="w"> </span><span class="nc">&quot;infrahub_autonomoussystem&quot;</span><span class="w"> </span><span class="nv">&quot;AS701&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">as_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;AS701&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">data</span><span class="w"> </span><span class="nc">&quot;infrahub_platform&quot;</span><span class="w"> </span><span class="nv">&quot;iosxr&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">platform_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Cisco IOS-XR&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">data</span><span class="w"> </span><span class="nc">&quot;infrahub_ipaddress&quot;</span><span class="w"> </span><span class="nv">&quot;mgmt_address&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">ip_address_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;10.0.0.2/24&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;infrahub_device&quot;</span><span class="w"> </span><span class="nv">&quot;bulk_device_modify&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="na">for_each</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="nf">toset</span><span class="p">([</span><span class="err">for</span><span class="w"> </span><span class="err">i</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="nf">range</span><span class="p">(</span><span class="m">100</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nf">format</span><span class="p">(</span><span class="s2">&quot;router%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">i</span><span class="p">)])</span>
+<span class="w">  </span><span class="na">name_value</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="nv">each.key</span>
+<span class="w">  </span><span class="na">asn_node_id</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="nv">data.infrahub_autonomoussystem.AS701.id</span>
+<span class="w">  </span><span class="na">device_type_node_id</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">data.infrahub_devicetype.ncs.id</span>
+<span class="w">  </span><span class="na">location_node_id</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">data.infrahub_country.usa.id</span>
+<span class="w">  </span><span class="na">platform_node_id</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">data.infrahub_platform.iosxr.id</span>
+<span class="w">  </span><span class="na">primary_address_node_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">data.infrahub_ipaddress.mgmt_address.id</span>
+<span class="w">  </span><span class="na">status_value</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;active&quot;</span>
+<span class="w">  </span><span class="na">topology_node_id</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nv">data.infrahub_topology.fra05-pod1.id</span>
+<span class="w">  </span><span class="na">role_value</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;spine&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<blockquote>
+<p>💡 <strong>Scalable Automation:</strong> One configuration can deploy 100+ resources with consistent attributes and structure. All manageable and changeable from the same place.</p>
+</blockquote>
+<hr>
+<h2>📖 Documentation in Every Provider</h2>
+<p>Each generated provider includes built-in documentation under the docs/ folder. This contains:</p>
+<ul>
+<li>Usage examples</li>
+<li>Supported resources and data sources</li>
+<li>attributes of each resource</li>
+</ul>
+<p>So if you're ever unsure about a field or want to explore capabilities, just open up the docs/ folder in your provider’s repo.</p>
+<hr>
+<h2>✅ Final Thoughts</h2>
+<p>The Infrahub Terraform provider brings the power of declarative infrastructure to your network and asset management workflows. By chaining data sources and resources, you create configurations that are not only scalable but also easy to read, maintain, and extend.</p>
+<hr>
+<p>💬 <strong>Have questions or feedback?</strong> Share your use case with me — I’d love to see how you’re using Infrahub + Terraform! Catch me on <a href="https://www.linkedin.com/in/marco-martinez-364461243/">Linkedin</a></p>
+
+
+        
+    </div>
+        <!-- /Content --> 
+
+        <!-- Footer -->
+        <div class="footer gradient-2">
+            <div class="container footer-container ">
+                <div class="row">
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                        <div class="footer-title">Sitemap</div>
+                        <ul class="list-unstyled">
+                            <li><a href="/archives.html">Archives</a></li>
+                            <li><a href="/tags.html">Tags</a></li>
+                            <li><a href="/authors.html">Authors</a></li>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">Atom Feed</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                        <div class="footer-title">Social</div>
+                        <ul class="list-unstyled">
+                            <li><a href="https://twitter.com/InfraAsCode" target="_blank">Twitter</a></li>
+                            <li><a href="https://www.linkedin.com/in/ubaumannch/" target="_blank">LinkedIn</a></li>
+                            <li><a href="https://github.com/ubaumann" target="_blank">GitHub</a></li>
+                            <li><a href="https://www.youtube.com/@infrastructureascode" target="_blank">YouTube</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                    </div> 
+                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                        <p class="pull-right text-right">
+                            <small><em>Proudly powered by <a href="http://docs.getpelican.com/" target="_blank">pelican</a></em></small><br/>
+                            <small><em>Theme and code by <a href="https://github.com/molivier" target="_blank">molivier</a></em></small><br/>
+                            <small>&copy; ubaumann 2020</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Footer -->
+    </body>
+</html>

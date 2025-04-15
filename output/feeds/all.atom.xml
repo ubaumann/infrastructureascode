@@ -1,5 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Infrastructure as Code</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2025-04-14T20:00:00+02:00</updated><entry><title>Creating your own Infrahub Terraform Provider</title><link href="/infrahub_terraform.html" rel="alternate"></link><published>2025-04-14T20:00:00+02:00</published><updated>2025-04-14T20:00:00+02:00</updated><author><name>mmartinez</name></author><id>tag:None,2025-04-14:/infrahub_terraform.html</id><summary type="html">&lt;h1&gt;🚀 How to Build and Deploy Your Own Terraform Provider with Infrahub&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Infrastructure as Code</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2025-04-14T20:00:00+02:00</updated><entry><title>Using your own Infrahub Provider</title><link href="/first_steps_infrahub_terraform.html" rel="alternate"></link><published>2025-04-14T20:00:00+02:00</published><updated>2025-04-14T20:00:00+02:00</updated><author><name>mmartinez</name></author><id>tag:None,2025-04-14:/first_steps_infrahub_terraform.html</id><summary type="html">&lt;h1&gt;🌐 How to use your Custom Infrahub Terraform Provider&lt;/h1&gt;
+&lt;p&gt;Working with custom Terraform providers unlocks a whole new level of automation and flexibility. With the &lt;strong&gt;Infrahub Terraform provider&lt;/strong&gt;, you can define, query, and manage infrastructure in a modular, declarative way—perfect for modern network and infrastructure workflows.&lt;/p&gt;
+&lt;p&gt;In this guide, you …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;🌐 How to use your Custom Infrahub Terraform Provider&lt;/h1&gt;
+&lt;p&gt;Working with custom Terraform providers unlocks a whole new level of automation and flexibility. With the &lt;strong&gt;Infrahub Terraform provider&lt;/strong&gt;, you can define, query, and manage infrastructure in a modular, declarative way—perfect for modern network and infrastructure workflows.&lt;/p&gt;
+&lt;p&gt;In this guide, you’ll learn how to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;🔧 Configure the Infrahub provider  &lt;/li&gt;
+&lt;li&gt;🔁 Chain data sources with resources for clean, reusable setups  &lt;/li&gt;
+&lt;li&gt;🚀 Use Terraform's workflow to deploy your infrastructure  &lt;/li&gt;
+&lt;li&gt;🧱 Provision both single and bulk devices  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2&gt;⚠️ Disclaimer&lt;/h2&gt;
+&lt;p&gt;🛠️ Haven’t generated your provider yet?&lt;/p&gt;
+&lt;p&gt;Before using the examples above, make sure you've created your custom Terraform provider with Infrahub. You can follow the step-by-step guide at &lt;a href="/infrahub_terraform.html"&gt;Build your own Infrahub Terraform Provider&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This blog assumes your provider is already built and ready to be used in your Terraform workflow.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;🔧 Step 1: Configure the Infrahub Provider&lt;/h2&gt;
+&lt;p&gt;Before you run any Terraform commands, you need to set up your provider in &lt;code&gt;main.tf&lt;/code&gt;. This includes specifying where to find the provider and how to authenticate with Infrahub.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;terraform&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nb"&gt;required_providers&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;infrahub&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="na"&gt;source&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;infrastructureascode.ch/marcom4rtinez/infrahub-main&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="na"&gt;version&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;0.0.2&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;provider&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;&amp;quot;infrahub&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;api_key&lt;/span&gt;&lt;span class="w"&gt;         &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;XXXXXXXXXXXXX&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;infrahub_server&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;http://localhost:8000&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;branch&lt;/span&gt;&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;main&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;🧠 &lt;strong&gt;Pro Tip:&lt;/strong&gt; This setup allows Terraform to connect to your Infrahub instance and manage resources declaratively. Working on different branches is also possible.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2&gt;📦 Step 2: Run Terraform Commands&lt;/h2&gt;
+&lt;p&gt;With your provider configured, you can now use Terraform’s core workflow:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;terraform&lt;span class="w"&gt; &lt;/span&gt;init
+terraform&lt;span class="w"&gt; &lt;/span&gt;plan
+terraform&lt;span class="w"&gt; &lt;/span&gt;apply&lt;span class="w"&gt; &lt;/span&gt;-auto-approve
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;terraform init&lt;/code&gt; — Downloads and sets up the provider.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;terraform plan&lt;/code&gt; — Shows a preview of what will be created/changed.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;terraform apply -auto-approve&lt;/code&gt; — Applies changes without prompting.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2&gt;🧩 Power of Chaining Data Sources and Resources&lt;/h2&gt;
+&lt;p&gt;One of the biggest strengths of Terraform is how &lt;strong&gt;data sources and resources can be chained together&lt;/strong&gt;. This makes your configuration &lt;strong&gt;modular&lt;/strong&gt;, &lt;strong&gt;reusable&lt;/strong&gt;, and &lt;strong&gt;readable&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;For example:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pull metadata from Infrahub (like country, platform, device type)  &lt;/li&gt;
+&lt;li&gt;Use that metadata directly when creating new infrastructure&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This approach avoids hardcoding values, allows consistent references across resources, and ensures changes in upstream data automatically propagate through your configuration.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;📚 Example 1: Query All Devices&lt;/h2&gt;
+&lt;p&gt;Use a data source to list all devices in your Infrahub instance:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kr"&gt;data&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;&amp;quot;infrahub_devices&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;&amp;quot;all_devices&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{}&lt;/span&gt;
+
+&lt;span class="kr"&gt;output&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;&amp;quot;devices_all_devices&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;data.infrahub_devices.all_devices&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Great for visibility, inventory audits, or referencing existing infrastructure.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;🛠 Example 2: Define a Single Device with Chained Data Sources&lt;/h2&gt;
+&lt;p&gt;This example combines multiple data sources (e.g., country, topology, device type) and uses them to create a device resource.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kr"&gt;data&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;&amp;quot;infrahub_country&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;&amp;quot;germany&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;country_name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Germany&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;data&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;&amp;quot;infrahub_topology&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;&amp;quot;de1-pod1&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;topology_name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;de1-pod1&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;data&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;&amp;quot;infrahub_devicetype&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;&amp;quot;ccs&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;device_type_name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;CCS-720DP-48S-2F&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;data&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;&amp;quot;infrahub_autonomoussystem&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;&amp;quot;AS174&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;as_name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;AS174&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;data&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;&amp;quot;infrahub_platform&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;&amp;quot;Arista&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;platform_name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Arista EOS&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;data&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;&amp;quot;infrahub_ipaddress&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;&amp;quot;mgmt_address&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;ip_address_value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;10.0.0.1/24&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;resource&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;&amp;quot;infrahub_device&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;&amp;quot;device_res&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;name_value&lt;/span&gt;&lt;span class="w"&gt;              &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;switch27&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;asn_node_id&lt;/span&gt;&lt;span class="w"&gt;             &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;data.infrahub_autonomoussystem.AS174.id&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;device_type_node_id&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;data.infrahub_devicetype.ccs.id&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;location_node_id&lt;/span&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;data.infrahub_country.germany.id&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;platform_node_id&lt;/span&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;data.infrahub_platform.Arista.id&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;primary_address_node_id&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;data.infrahub_ipaddress.mgmt_address.id&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;status_value&lt;/span&gt;&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;active&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;topology_node_id&lt;/span&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;data.infrahub_topology.de1-pod1.id&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;role_value&lt;/span&gt;&lt;span class="w"&gt;              &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;leaf&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;🔗 &lt;strong&gt;Why this matters:&lt;/strong&gt; All values are derived dynamically from upstream sources, making your infrastructure definition both readable and DRY.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2&gt;⚙️ Example 3: Bulk Provision Devices with &lt;code&gt;for_each&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Need to spin up a fleet of routers? Use a loop to define hundreds of resources cleanly:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kr"&gt;data&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;&amp;quot;infrahub_country&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;&amp;quot;usa&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;country_name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;United States of America&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;data&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;&amp;quot;infrahub_topology&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;&amp;quot;fra05-pod1&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;topology_name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;fra05-pod1&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;data&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;&amp;quot;infrahub_devicetype&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;&amp;quot;ncs&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;device_type_name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;NCS-5501-SE&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;data&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;&amp;quot;infrahub_autonomoussystem&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;&amp;quot;AS701&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;as_name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;AS701&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;data&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;&amp;quot;infrahub_platform&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;&amp;quot;iosxr&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;platform_name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Cisco IOS-XR&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;data&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;&amp;quot;infrahub_ipaddress&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;&amp;quot;mgmt_address&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;ip_address_value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;10.0.0.2/24&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;resource&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nc"&gt;&amp;quot;infrahub_device&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;&amp;quot;bulk_device_modify&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;for_each&lt;/span&gt;&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;toset&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="err"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;router%d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)])&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;name_value&lt;/span&gt;&lt;span class="w"&gt;              &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;each.key&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;asn_node_id&lt;/span&gt;&lt;span class="w"&gt;             &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;data.infrahub_autonomoussystem.AS701.id&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;device_type_node_id&lt;/span&gt;&lt;span class="w"&gt;     &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;data.infrahub_devicetype.ncs.id&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;location_node_id&lt;/span&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;data.infrahub_country.usa.id&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;platform_node_id&lt;/span&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;data.infrahub_platform.iosxr.id&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;primary_address_node_id&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;data.infrahub_ipaddress.mgmt_address.id&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;status_value&lt;/span&gt;&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;active&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;topology_node_id&lt;/span&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;data.infrahub_topology.fra05-pod1.id&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="na"&gt;role_value&lt;/span&gt;&lt;span class="w"&gt;              &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;spine&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;💡 &lt;strong&gt;Scalable Automation:&lt;/strong&gt; One configuration can deploy 100+ resources with consistent attributes and structure. All manageable and changeable from the same place.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2&gt;📖 Documentation in Every Provider&lt;/h2&gt;
+&lt;p&gt;Each generated provider includes built-in documentation under the docs/ folder. This contains:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Usage examples&lt;/li&gt;
+&lt;li&gt;Supported resources and data sources&lt;/li&gt;
+&lt;li&gt;attributes of each resource&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So if you're ever unsure about a field or want to explore capabilities, just open up the docs/ folder in your provider’s repo.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;✅ Final Thoughts&lt;/h2&gt;
+&lt;p&gt;The Infrahub Terraform provider brings the power of declarative infrastructure to your network and asset management workflows. By chaining data sources and resources, you create configurations that are not only scalable but also easy to read, maintain, and extend.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;💬 &lt;strong&gt;Have questions or feedback?&lt;/strong&gt; Share your use case with me — I’d love to see how you’re using Infrahub + Terraform! Catch me on &lt;a href="https://www.linkedin.com/in/marco-martinez-364461243/"&gt;Linkedin&lt;/a&gt;&lt;/p&gt;</content><category term="DevOps"></category><category term="Terraform"></category><category term="Infrahub"></category></entry><entry><title>Creating your own Infrahub Terraform Provider</title><link href="/infrahub_terraform.html" rel="alternate"></link><published>2025-04-14T20:00:00+02:00</published><updated>2025-04-14T20:00:00+02:00</updated><author><name>mmartinez</name></author><id>tag:None,2025-04-14:/infrahub_terraform.html</id><summary type="html">&lt;h1&gt;🚀 How to Build and Deploy Your Own Terraform Provider with Infrahub&lt;/h1&gt;
 &lt;p&gt;If you're venturing into the world of custom Terraform providers and want to leverage the power of Infrahub, this guide is your fast track. We'll walk through everything from cloning the template to deploying your provider to a private …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;🚀 How to Build and Deploy Your Own Terraform Provider with Infrahub&lt;/h1&gt;
 &lt;p&gt;If you're venturing into the world of custom Terraform providers and want to leverage the power of Infrahub, this guide is your fast track. We'll walk through everything from cloning the template to deploying your provider to a private registry. Whether you're automating infrastructure workflows or integrating a new API, this setup will get you running in no time.&lt;/p&gt;
 &lt;hr&gt;
@@ -155,7 +326,7 @@ make&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;# To rebui
 &lt;h2&gt;🎯 Wrapping Up&lt;/h2&gt;
 &lt;p&gt;With this setup, you're now fully equipped to develop, test, and deploy your own Terraform provider powered by Infrahub. Whether you're automating infrastructure or building integrations, this template gives you a rock-solid foundation.&lt;/p&gt;
 &lt;p&gt;Got questions or building something cool with Infrahub? Let me know — I’d love to see what you're creating!&lt;/p&gt;
-&lt;p&gt;Feel free to reach out to me on &lt;a href="https://www.linkedin.com/in/marco-martinez-364461243/"&gt;Linkedin&lt;/a&gt;, I'm happy to have a conversation!&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>From X25 to Kubernetes: Key Takeaways from AutoCon1</title><link href="/autocon1.html" rel="alternate"></link><published>2024-06-03T20:00:00+02:00</published><updated>2024-06-03T20:00:00+02:00</updated><author><name>ubaumann</name></author><id>tag:None,2024-06-03:/autocon1.html</id><summary type="html">&lt;p&gt;While I'm more comfortable with technical content, I'd like to share my insights from the recent AutoCon1 conference on network automation, with some help from Grammarly and ChatGPT. First and foremost, thank you to everyone who made this forum possible, from the presentations and discussions to the creative boost provided …&lt;/p&gt;</summary><content type="html">&lt;p&gt;While I'm more comfortable with technical content, I'd like to share my insights from the recent AutoCon1 conference on network automation, with some help from Grammarly and ChatGPT. First and foremost, thank you to everyone who made this forum possible, from the presentations and discussions to the creative boost provided by the beer.&lt;/p&gt;
+&lt;p&gt;Feel free to reach out to me on &lt;a href="https://www.linkedin.com/in/marco-martinez-364461243/"&gt;Linkedin&lt;/a&gt;, I'm happy to have a conversation!&lt;/p&gt;</content><category term="DevOps"></category><category term="Terraform"></category><category term="Infrahub"></category></entry><entry><title>From X25 to Kubernetes: Key Takeaways from AutoCon1</title><link href="/autocon1.html" rel="alternate"></link><published>2024-06-03T20:00:00+02:00</published><updated>2024-06-03T20:00:00+02:00</updated><author><name>ubaumann</name></author><id>tag:None,2024-06-03:/autocon1.html</id><summary type="html">&lt;p&gt;While I'm more comfortable with technical content, I'd like to share my insights from the recent AutoCon1 conference on network automation, with some help from Grammarly and ChatGPT. First and foremost, thank you to everyone who made this forum possible, from the presentations and discussions to the creative boost provided …&lt;/p&gt;</summary><content type="html">&lt;p&gt;While I'm more comfortable with technical content, I'd like to share my insights from the recent AutoCon1 conference on network automation, with some help from Grammarly and ChatGPT. First and foremost, thank you to everyone who made this forum possible, from the presentations and discussions to the creative boost provided by the beer.&lt;/p&gt;
 &lt;p&gt;The forum asked: "Why haven't we seen full adoption of network automation yet?" After attending my second conference, I asked myself: Are we any closer to achieving this? Unfortunately, not really. Don't get me wrong, we are a passionate, constructive, and highly motivated group. However, the network sector progresses exceptionally slowly.
 I won't delve into the reasons for this sluggishness, but I was surprised to learn that a US ISP still provides X25, T1, Frame Relay, and other services while managing over 100 different platforms. In budget planning, the network often gets overlooked. Due to our responsibility for delivering critical infrastructure, we usually find ourselves pleading for change windows. This generalisation doesn't apply to everyone, of course, so take my words with a grain of salt.&lt;/p&gt;
 &lt;p&gt;At AutoCon, experienced professionals with a decade or more of expertise convene alongside newcomers embarking on their journey. Here's a concise summary of some key takeaways from the forum for beginners: "Don't be afraid of failing," "It is a journey," "Just start," "Take advantage of crises," "Kill your babies," and "Have a vision, set achievable goals."
