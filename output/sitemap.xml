@@ -6,42 +6,42 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2025-07-08T02:44:26-00:00</lastmod>
+<lastmod>2025-07-08T22:38:28-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2025-07-08T02:44:26-00:00</lastmod>
+<lastmod>2025-07-08T22:38:28-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/author/juntersander.html</loc>
-<lastmod>2025-07-08T02:44:26-00:00</lastmod>
+<lastmod>2025-07-08T22:38:28-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/author/mmartinez.html</loc>
-<lastmod>2025-07-08T02:44:26-00:00</lastmod>
+<lastmod>2025-07-08T22:38:28-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/author/ubaumann.html</loc>
-<lastmod>2025-07-08T02:44:26-00:00</lastmod>
+<lastmod>2025-07-08T22:38:28-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/authors.html</loc>
-<lastmod>2025-07-08T02:44:26-00:00</lastmod>
+<lastmod>2025-07-08T22:38:28-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -69,7 +69,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2025-07-08T02:44:26-00:00</lastmod>
+<lastmod>2025-07-08T22:38:28-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -195,7 +195,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/pages/tools.html</loc>
-<lastmod>2025-07-08T02:44:26-00:00</lastmod>
+<lastmod>2025-07-08T22:38:28-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -230,7 +230,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2025-07-08T02:44:26-00:00</lastmod>
+<lastmod>2025-07-08T22:38:28-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
