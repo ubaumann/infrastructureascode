@@ -1,5 +1,407 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Infrastructure as Code</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2025-04-14T20:00:00+02:00</updated><entry><title>Using your own Infrahub Provider</title><link href="/first_steps_infrahub_terraform.html" rel="alternate"></link><published>2025-04-14T20:00:00+02:00</published><updated>2025-04-14T20:00:00+02:00</updated><author><name>mmartinez</name></author><id>tag:None,2025-04-14:/first_steps_infrahub_terraform.html</id><summary type="html">&lt;h1&gt;🌐 How to use your Custom Infrahub Terraform Provider&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Infrastructure as Code</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2025-07-10T12:00:00+02:00</updated><entry><title>Creating Network Topologies with D2</title><link href="/d2-network-topologies.html" rel="alternate"></link><published>2025-07-10T12:00:00+02:00</published><updated>2025-07-10T12:00:00+02:00</updated><author><name>ubaumann</name></author><id>tag:None,2025-07-10:/d2-network-topologies.html</id><summary type="html">&lt;p&gt;This blog post explores how to create network topologies using D2, a powerful diagramming tool.&lt;/p&gt;</summary><content type="html">&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h1 id="Creating-Network-Topologies-with-D2"&gt;Creating Network Topologies with D2&lt;a class="anchor-link" href="#Creating-Network-Topologies-with-D2"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Multiple tools can be used to create diagrams from textual descriptions. &lt;a href="https://kroki.io"&gt;kroki.io&lt;/a&gt; is a valuable tool that offers an API for rendering multiple diagram formats. Checking out the &lt;a href="https://kroki.io/#cheat-sheet"&gt;Cheat Sheet&lt;/a&gt; is highly recommended. In the past, I have mainly used &lt;a href="https://graphviz.org"&gt;Graphviz&lt;/a&gt; and &lt;a href="https://mermaid.js.org"&gt;Mermaid&lt;/a&gt; to create network topologies. &lt;a href="https://d2lang.com"&gt;D2&lt;/a&gt; is a newer open-source tool with a more modern DSL (Domain Specific Language) to create diagrams. This post will demonstrate how to build network topologies with D2 and highlight some of the features D2 offers.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;The &lt;a href="https://netautlabs.net/topology-with-napalm/"&gt;NetAutLab Topology with NAPALM&lt;/a&gt; contains a task to create a network topology based on the data collected with NAPALM. After reading this post, the task should be easy to complete using D2. When using textual descriptions to generate diagrams, a couple of things should be considered:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Grouping or clustering nodes can be a great way to improve readability.&lt;/li&gt;
+&lt;li&gt;Using colours to differentiate between different types of nodes or links can help to identify the role quickly&lt;/li&gt;
+&lt;li&gt;Trying different tools and rendering engines can significantly impact the readability of the diagram.&lt;/li&gt;
+&lt;li&gt;Enriching the diagram with additional information can be helpful, but it can also make the diagram cluttered. Use additional details sparingly.&lt;/li&gt;
+&lt;li&gt;Try different versions of the text. The direction of the links can affect the device placement and the overall readability of the diagram.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;The SVG can be used in various ways, such as embedding it in your documentation. The following image shows an example of rendering the diagram directly in Infrahub as an artifact. This ensures that the diagram is always up-to-date.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/202507_infrahub_TopologySVGD2_Artifact.png" alt="Infrahub Topology SVG D2 Artifact"&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="GraphViz,-Mermaid-and-D2-examples"&gt;GraphViz, Mermaid and D2 examples&lt;a class="anchor-link" href="#GraphViz,-Mermaid-and-D2-examples"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The command &lt;code&gt;%load_ext kroki&lt;/code&gt; loads the Jupyter Notebook magic function &lt;code&gt;%%kroki&lt;/code&gt;, which allows rendering diagrams using the Kroki API and receiving the rendered diagram as an SVG. At the end of the post, you will find examples of how to use the API directly with Python.&lt;/p&gt;
+&lt;p&gt;To provide a simple comparison, the following examples generate a 3-leaf and 2-spine CLOS network topology using GraphViz, Mermaid, and D2. All the examples are without fine-tuning and only show the basic syntax of the tools.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[2]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;load_ext&lt;/span&gt; kroki
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="GraphViz"&gt;GraphViz&lt;a class="anchor-link" href="#GraphViz"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[8]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="k"&gt;kroki&lt;/span&gt; graphviz
+
+graph {
+    node [shape=box, style=&amp;quot;rounded,filled&amp;quot;]
+    spine01 -- leaf01
+    spine01 -- leaf02
+    spine01 -- leaf03
+    spine02 -- leaf01
+    spine02 -- leaf02
+    spine02 -- leaf03
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+    &lt;div class="prompt output_prompt"&gt;Out[8]:&lt;/div&gt;
+
+
+
+&lt;div class="output_svg output_subarea output_execute_result"&gt;
+&lt;svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="224pt" height="116pt" viewBox="0.00 0.00 224.25 116.00"&gt;
+&lt;g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)"&gt;
+&lt;polygon fill="white" stroke="none" points="-4,4 -4,-112 220.25,-112 220.25,4 -4,4"/&gt;
+&lt;!-- spine01 --&gt;
+&lt;g id="node1" class="node"&gt;
+&lt;title&gt;spine01&lt;/title&gt;
+&lt;path fill="lightgrey" stroke="black" d="M87.25,-108C87.25,-108 39,-108 39,-108 33,-108 27,-102 27,-96 27,-96 27,-84 27,-84 27,-78 33,-72 39,-72 39,-72 87.25,-72 87.25,-72 93.25,-72 99.25,-78 99.25,-84 99.25,-84 99.25,-96 99.25,-96 99.25,-102 93.25,-108 87.25,-108"/&gt;
+&lt;text text-anchor="middle" x="63.12" y="-85.33" font-family="Times,serif" font-size="14.00"&gt;spine01&lt;/text&gt;
+&lt;/g&gt;
+&lt;!-- leaf01 --&gt;
+&lt;g id="node2" class="node"&gt;
+&lt;title&gt;leaf01&lt;/title&gt;
+&lt;path fill="lightgrey" stroke="black" d="M48.25,-36C48.25,-36 12,-36 12,-36 6,-36 0,-30 0,-24 0,-24 0,-12 0,-12 0,-6 6,0 12,0 12,0 48.25,0 48.25,0 54.25,0 60.25,-6 60.25,-12 60.25,-12 60.25,-24 60.25,-24 60.25,-30 54.25,-36 48.25,-36"/&gt;
+&lt;text text-anchor="middle" x="30.12" y="-13.32" font-family="Times,serif" font-size="14.00"&gt;leaf01&lt;/text&gt;
+&lt;/g&gt;
+&lt;!-- spine01&amp;#45;&amp;#45;leaf01 --&gt;
+&lt;g id="edge1" class="edge"&gt;
+&lt;title&gt;spine01--leaf01&lt;/title&gt;
+&lt;path fill="none" stroke="black" d="M54.97,-71.7C49.85,-60.85 43.29,-46.92 38.19,-36.1"/&gt;
+&lt;/g&gt;
+&lt;!-- leaf02 --&gt;
+&lt;g id="node3" class="node"&gt;
+&lt;title&gt;leaf02&lt;/title&gt;
+&lt;path fill="lightgrey" stroke="black" d="M126.25,-36C126.25,-36 90,-36 90,-36 84,-36 78,-30 78,-24 78,-24 78,-12 78,-12 78,-6 84,0 90,0 90,0 126.25,0 126.25,0 132.25,0 138.25,-6 138.25,-12 138.25,-12 138.25,-24 138.25,-24 138.25,-30 132.25,-36 126.25,-36"/&gt;
+&lt;text text-anchor="middle" x="108.12" y="-13.32" font-family="Times,serif" font-size="14.00"&gt;leaf02&lt;/text&gt;
+&lt;/g&gt;
+&lt;!-- spine01&amp;#45;&amp;#45;leaf02 --&gt;
+&lt;g id="edge2" class="edge"&gt;
+&lt;title&gt;spine01--leaf02&lt;/title&gt;
+&lt;path fill="none" stroke="black" d="M74.25,-71.7C81.22,-60.85 90.18,-46.92 97.13,-36.1"/&gt;
+&lt;/g&gt;
+&lt;!-- leaf03 --&gt;
+&lt;g id="node4" class="node"&gt;
+&lt;title&gt;leaf03&lt;/title&gt;
+&lt;path fill="lightgrey" stroke="black" d="M204.25,-36C204.25,-36 168,-36 168,-36 162,-36 156,-30 156,-24 156,-24 156,-12 156,-12 156,-6 162,0 168,0 168,0 204.25,0 204.25,0 210.25,0 216.25,-6 216.25,-12 216.25,-12 216.25,-24 216.25,-24 216.25,-30 210.25,-36 204.25,-36"/&gt;
+&lt;text text-anchor="middle" x="186.12" y="-13.32" font-family="Times,serif" font-size="14.00"&gt;leaf03&lt;/text&gt;
+&lt;/g&gt;
+&lt;!-- spine01&amp;#45;&amp;#45;leaf03 --&gt;
+&lt;g id="edge3" class="edge"&gt;
+&lt;title&gt;spine01--leaf03&lt;/title&gt;
+&lt;path fill="none" stroke="black" d="M93.85,-71.52C112.77,-60.74 136.94,-46.99 155.8,-36.26"/&gt;
+&lt;/g&gt;
+&lt;!-- spine02 --&gt;
+&lt;g id="node5" class="node"&gt;
+&lt;title&gt;spine02&lt;/title&gt;
+&lt;path fill="lightgrey" stroke="black" d="M177.25,-108C177.25,-108 129,-108 129,-108 123,-108 117,-102 117,-96 117,-96 117,-84 117,-84 117,-78 123,-72 129,-72 129,-72 177.25,-72 177.25,-72 183.25,-72 189.25,-78 189.25,-84 189.25,-84 189.25,-96 189.25,-96 189.25,-102 183.25,-108 177.25,-108"/&gt;
+&lt;text text-anchor="middle" x="153.12" y="-85.33" font-family="Times,serif" font-size="14.00"&gt;spine02&lt;/text&gt;
+&lt;/g&gt;
+&lt;!-- spine02&amp;#45;&amp;#45;leaf01 --&gt;
+&lt;g id="edge4" class="edge"&gt;
+&lt;title&gt;spine02--leaf01&lt;/title&gt;
+&lt;path fill="none" stroke="black" d="M122.4,-71.52C103.48,-60.74 79.31,-46.99 60.45,-36.26"/&gt;
+&lt;/g&gt;
+&lt;!-- spine02&amp;#45;&amp;#45;leaf02 --&gt;
+&lt;g id="edge5" class="edge"&gt;
+&lt;title&gt;spine02--leaf02&lt;/title&gt;
+&lt;path fill="none" stroke="black" d="M142,-71.7C135.03,-60.85 126.07,-46.92 119.12,-36.1"/&gt;
+&lt;/g&gt;
+&lt;!-- spine02&amp;#45;&amp;#45;leaf03 --&gt;
+&lt;g id="edge6" class="edge"&gt;
+&lt;title&gt;spine02--leaf03&lt;/title&gt;
+&lt;path fill="none" stroke="black" d="M161.28,-71.7C166.4,-60.85 172.96,-46.92 178.06,-36.1"/&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="Mermaid"&gt;Mermaid&lt;a class="anchor-link" href="#Mermaid"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[11]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="k"&gt;kroki&lt;/span&gt; mermaid
+
+graph TB;
+    spine01 --- leaf01;
+    spine01 --- leaf02;
+    spine01 --- leaf03;
+    spine02 --- leaf01;
+    spine02 --- leaf02;
+    spine02 --- leaf03;
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+    &lt;div class="prompt output_prompt"&gt;Out[11]:&lt;/div&gt;
+
+
+
+&lt;div class="output_svg output_subarea output_execute_result"&gt;
+&lt;svg xmlns="http://www.w3.org/2000/svg" aria-roledescription="flowchart-v2" role="graphics-document document" viewBox="0 0 458.9296875 174" height="174" class="flowchart" width="458.9296875" id="container"&gt;&lt;style&gt;#container{font-family:&amp;quot;trebuchet ms&amp;quot;,verdana,arial,sans-serif;font-size:16px;fill:#333;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#container .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#container .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#container .error-icon{fill:#552222;}#container .error-text{fill:#552222;stroke:#552222;}#container .edge-thickness-normal{stroke-width:1px;}#container .edge-thickness-thick{stroke-width:3.5px;}#container .edge-pattern-solid{stroke-dasharray:0;}#container .edge-thickness-invisible{stroke-width:0;fill:none;}#container .edge-pattern-dashed{stroke-dasharray:3;}#container .edge-pattern-dotted{stroke-dasharray:2;}#container .marker{fill:#333333;stroke:#333333;}#container .marker.cross{stroke:#333333;}#container svg{font-family:&amp;quot;trebuchet ms&amp;quot;,verdana,arial,sans-serif;font-size:16px;}#container p{margin:0;}#container .label{font-family:&amp;quot;trebuchet ms&amp;quot;,verdana,arial,sans-serif;color:#333;}#container .cluster-label text{fill:#333;}#container .cluster-label span{color:#333;}#container .cluster-label span p{background-color:transparent;}#container .label text,#container span{fill:#333;color:#333;}#container .node rect,#container .node circle,#container .node ellipse,#container .node polygon,#container .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#container .rough-node .label text,#container .node .label text,#container .image-shape .label,#container .icon-shape .label{text-anchor:middle;}#container .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#container .rough-node .label,#container .node .label,#container .image-shape .label,#container .icon-shape .label{text-align:center;}#container .node.clickable{cursor:pointer;}#container .root .anchor path{fill:#333333!important;stroke-width:0;stroke:#333333;}#container .arrowheadPath{fill:#333333;}#container .edgePath .path{stroke:#333333;stroke-width:2.0px;}#container .flowchart-link{stroke:#333333;fill:none;}#container .edgeLabel{background-color:rgba(232,232,232, 0.8);text-align:center;}#container .edgeLabel p{background-color:rgba(232,232,232, 0.8);}#container .edgeLabel rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#container .labelBkg{background-color:rgba(232, 232, 232, 0.5);}#container .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#container .cluster text{fill:#333;}#container .cluster span{color:#333;}#container div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:&amp;quot;trebuchet ms&amp;quot;,verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#container .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#container rect.text{fill:none;stroke-width:0;}#container .icon-shape,#container .image-shape{background-color:rgba(232,232,232, 0.8);text-align:center;}#container .icon-shape p,#container .image-shape p{background-color:rgba(232,232,232, 0.8);padding:2px;}#container .icon-shape rect,#container .image-shape rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#container :root{--mermaid-font-family:&amp;quot;trebuchet ms&amp;quot;,verdana,arial,sans-serif;}&lt;/style&gt;&lt;g&gt;&lt;marker orient="auto" markerHeight="8" markerWidth="8" markerUnits="userSpaceOnUse" refY="5" refX="5" viewBox="0 0 10 10" class="marker flowchart-v2" id="container_flowchart-v2-pointEnd"&gt;&lt;path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"/&gt;&lt;/marker&gt;&lt;marker orient="auto" markerHeight="8" markerWidth="8" markerUnits="userSpaceOnUse" refY="5" refX="4.5" viewBox="0 0 10 10" class="marker flowchart-v2" id="container_flowchart-v2-pointStart"&gt;&lt;path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"/&gt;&lt;/marker&gt;&lt;marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5" refX="11" viewBox="0 0 10 10" class="marker flowchart-v2" id="container_flowchart-v2-circleEnd"&gt;&lt;circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"/&gt;&lt;/marker&gt;&lt;marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5" refX="-1" viewBox="0 0 10 10" class="marker flowchart-v2" id="container_flowchart-v2-circleStart"&gt;&lt;circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"/&gt;&lt;/marker&gt;&lt;marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5.2" refX="12" viewBox="0 0 11 11" class="marker cross flowchart-v2" id="container_flowchart-v2-crossEnd"&gt;&lt;path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"/&gt;&lt;/marker&gt;&lt;marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5.2" refX="-1" viewBox="0 0 11 11" class="marker cross flowchart-v2" id="container_flowchart-v2-crossStart"&gt;&lt;path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"/&gt;&lt;/marker&gt;&lt;g class="root"&gt;&lt;g class="clusters"/&gt;&lt;g class="edgePaths"&gt;&lt;path style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_spine01_leaf01_0" d="M95.983,62L88.265,66.167C80.546,70.333,65.109,78.667,58.166,87C51.223,95.333,52.774,103.667,53.55,107.833L54.326,112"/&gt;&lt;path style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_spine01_leaf02_0" d="M146.166,62L146.192,66.167C146.218,70.333,146.269,78.667,152.931,87C159.593,95.333,172.867,103.667,179.503,107.833L186.14,112"/&gt;&lt;path style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_spine01_leaf03_0" d="M203.523,51.112L224.878,57.094C246.232,63.075,288.94,75.037,315.686,85.185C342.432,95.333,353.215,103.667,358.607,107.833L363.999,112"/&gt;&lt;path style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_spine02_leaf01_0" d="M253.523,51.309L232.323,57.257C211.122,63.206,168.721,75.103,142.155,85.218C115.588,95.333,104.856,103.667,99.49,107.833L94.124,112"/&gt;&lt;path style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_spine02_leaf02_0" d="M311.648,62L311.648,66.167C311.648,70.333,311.648,78.667,305.038,87C298.427,95.333,285.205,103.667,278.594,107.833L271.983,112"/&gt;&lt;path style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_spine02_leaf03_0" d="M361.998,62L369.768,66.167C377.537,70.333,393.077,78.667,400.072,87C407.066,95.333,405.515,103.667,404.739,107.833L403.963,112"/&gt;&lt;/g&gt;&lt;g class="edgeLabels"&gt;&lt;g class="edgeLabel"&gt;&lt;g transform="translate(0, 0)" class="label"&gt;&lt;foreignObject height="0" width="0"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg"&gt;&lt;span class="edgeLabel"/&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class="edgeLabel"&gt;&lt;g transform="translate(0, 0)" class="label"&gt;&lt;foreignObject height="0" width="0"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg"&gt;&lt;span class="edgeLabel"/&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class="edgeLabel"&gt;&lt;g transform="translate(0, 0)" class="label"&gt;&lt;foreignObject height="0" width="0"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg"&gt;&lt;span class="edgeLabel"/&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class="edgeLabel"&gt;&lt;g transform="translate(0, 0)" class="label"&gt;&lt;foreignObject height="0" width="0"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg"&gt;&lt;span class="edgeLabel"/&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class="edgeLabel"&gt;&lt;g transform="translate(0, 0)" class="label"&gt;&lt;foreignObject height="0" width="0"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg"&gt;&lt;span class="edgeLabel"/&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class="edgeLabel"&gt;&lt;g transform="translate(0, 0)" class="label"&gt;&lt;foreignObject height="0" width="0"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" class="labelBkg"&gt;&lt;span class="edgeLabel"/&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;g class="nodes"&gt;&lt;g transform="translate(146, 35)" id="flowchart-spine01-0" class="node default"&gt;&lt;rect height="54" width="115.046875" y="-27" x="-57.5234375" style="" class="basic label-container"/&gt;&lt;g transform="translate(-27.5234375, -12)" style="" class="label"&gt;&lt;rect/&gt;&lt;foreignObject height="24" width="55.046875"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"&gt;&lt;span class="nodeLabel"&gt;&lt;p&gt;spine01&lt;/p&gt;&lt;/span&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;/g&gt;&lt;/g&gt;&lt;g transform="translate(59.3515625, 139)" id="flowchart-leaf01-1" class="node default"&gt;&lt;rect height="54" width="102.703125" y="-27" x="-51.3515625" style="" class="basic label-container"/&gt;&lt;g transform="translate(-21.3515625, -12)" style="" class="label"&gt;&lt;rect/&gt;&lt;foreignObject height="24" width="42.703125"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"&gt;&lt;span class="nodeLabel"&gt;&lt;p&gt;leaf01&lt;/p&gt;&lt;/span&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;/g&gt;&lt;/g&gt;&lt;g transform="translate(229.14453125, 139)" id="flowchart-leaf02-3" class="node default"&gt;&lt;rect height="54" width="103.890625" y="-27" x="-51.9453125" style="" class="basic label-container"/&gt;&lt;g transform="translate(-21.9453125, -12)" style="" class="label"&gt;&lt;rect/&gt;&lt;foreignObject height="24" width="43.890625"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"&gt;&lt;span class="nodeLabel"&gt;&lt;p&gt;leaf02&lt;/p&gt;&lt;/span&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;/g&gt;&lt;/g&gt;&lt;g transform="translate(398.9375, 139)" id="flowchart-leaf03-5" class="node default"&gt;&lt;rect height="54" width="103.984375" y="-27" x="-51.9921875" style="" class="basic label-container"/&gt;&lt;g transform="translate(-21.9921875, -12)" style="" class="label"&gt;&lt;rect/&gt;&lt;foreignObject height="24" width="43.984375"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"&gt;&lt;span class="nodeLabel"&gt;&lt;p&gt;leaf03&lt;/p&gt;&lt;/span&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;/g&gt;&lt;/g&gt;&lt;g transform="translate(311.6484375, 35)" id="flowchart-spine02-6" class="node default"&gt;&lt;rect height="54" width="116.25" y="-27" x="-58.125" style="" class="basic label-container"/&gt;&lt;g transform="translate(-28.125, -12)" style="" class="label"&gt;&lt;rect/&gt;&lt;foreignObject height="24" width="56.25"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"&gt;&lt;span class="nodeLabel"&gt;&lt;p&gt;spine02&lt;/p&gt;&lt;/span&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;/svg&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="D2"&gt;D2&lt;a class="anchor-link" href="#D2"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[9]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="k"&gt;kroki&lt;/span&gt; d2
+
+spine01 -- leaf01
+spine01 -- leaf02
+spine01 -- leaf03
+spine02 -- leaf01
+spine02 -- leaf02
+spine02 -- leaf03
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+    &lt;div class="prompt output_prompt"&gt;Out[9]:&lt;/div&gt;
+
+
+
+&lt;div class="output_svg output_subarea output_execute_result"&gt;
+&lt;svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" data-d2-version="v0.7.0" preserveAspectRatio="xMinYMin meet" viewBox="0 0 618 434"&gt;&lt;svg class="d2-3655896804 d2-svg" width="618" height="434" viewBox="-101 -101 618 434"&gt;&lt;rect x="-101.000000" y="-101.000000" width="618.000000" height="434.000000" rx="0.000000" fill="#FFFFFF" class=" fill-N7" stroke-width="0"/&gt;&lt;style type="text/css"&gt;&lt;![CDATA[
+.d2-3655896804 .text-bold {
+	font-family: "d2-3655896804-font-bold";
+}
+@font-face {
+	font-family: d2-3655896804-font-bold;
+	src: url("data:application/font-woff;base64,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");
+}]]&gt;&lt;/style&gt;&lt;style type="text/css"&gt;&lt;![CDATA[.shape {
+  shape-rendering: geometricPrecision;
+  stroke-linejoin: round;
+}
+.connection {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.blend {
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+
+		.d2-3655896804 .fill-N1{fill:#0A0F25;}
+		.d2-3655896804 .fill-N2{fill:#676C7E;}
+		.d2-3655896804 .fill-N3{fill:#9499AB;}
+		.d2-3655896804 .fill-N4{fill:#CFD2DD;}
+		.d2-3655896804 .fill-N5{fill:#DEE1EB;}
+		.d2-3655896804 .fill-N6{fill:#EEF1F8;}
+		.d2-3655896804 .fill-N7{fill:#FFFFFF;}
+		.d2-3655896804 .fill-B1{fill:#0D32B2;}
+		.d2-3655896804 .fill-B2{fill:#0D32B2;}
+		.d2-3655896804 .fill-B3{fill:#E3E9FD;}
+		.d2-3655896804 .fill-B4{fill:#E3E9FD;}
+		.d2-3655896804 .fill-B5{fill:#EDF0FD;}
+		.d2-3655896804 .fill-B6{fill:#F7F8FE;}
+		.d2-3655896804 .fill-AA2{fill:#4A6FF3;}
+		.d2-3655896804 .fill-AA4{fill:#EDF0FD;}
+		.d2-3655896804 .fill-AA5{fill:#F7F8FE;}
+		.d2-3655896804 .fill-AB4{fill:#EDF0FD;}
+		.d2-3655896804 .fill-AB5{fill:#F7F8FE;}
+		.d2-3655896804 .stroke-N1{stroke:#0A0F25;}
+		.d2-3655896804 .stroke-N2{stroke:#676C7E;}
+		.d2-3655896804 .stroke-N3{stroke:#9499AB;}
+		.d2-3655896804 .stroke-N4{stroke:#CFD2DD;}
+		.d2-3655896804 .stroke-N5{stroke:#DEE1EB;}
+		.d2-3655896804 .stroke-N6{stroke:#EEF1F8;}
+		.d2-3655896804 .stroke-N7{stroke:#FFFFFF;}
+		.d2-3655896804 .stroke-B1{stroke:#0D32B2;}
+		.d2-3655896804 .stroke-B2{stroke:#0D32B2;}
+		.d2-3655896804 .stroke-B3{stroke:#E3E9FD;}
+		.d2-3655896804 .stroke-B4{stroke:#E3E9FD;}
+		.d2-3655896804 .stroke-B5{stroke:#EDF0FD;}
+		.d2-3655896804 .stroke-B6{stroke:#F7F8FE;}
+		.d2-3655896804 .stroke-AA2{stroke:#4A6FF3;}
+		.d2-3655896804 .stroke-AA4{stroke:#EDF0FD;}
+		.d2-3655896804 .stroke-AA5{stroke:#F7F8FE;}
+		.d2-3655896804 .stroke-AB4{stroke:#EDF0FD;}
+		.d2-3655896804 .stroke-AB5{stroke:#F7F8FE;}
+		.d2-3655896804 .background-color-N1{background-color:#0A0F25;}
+		.d2-3655896804 .background-color-N2{background-color:#676C7E;}
+		.d2-3655896804 .background-color-N3{background-color:#9499AB;}
+		.d2-3655896804 .background-color-N4{background-color:#CFD2DD;}
+		.d2-3655896804 .background-color-N5{background-color:#DEE1EB;}
+		.d2-3655896804 .background-color-N6{background-color:#EEF1F8;}
+		.d2-3655896804 .background-color-N7{background-color:#FFFFFF;}
+		.d2-3655896804 .background-color-B1{background-color:#0D32B2;}
+		.d2-3655896804 .background-color-B2{background-color:#0D32B2;}
+		.d2-3655896804 .background-color-B3{background-color:#E3E9FD;}
+		.d2-3655896804 .background-color-B4{background-color:#E3E9FD;}
+		.d2-3655896804 .background-color-B5{background-color:#EDF0FD;}
+		.d2-3655896804 .background-color-B6{background-color:#F7F8FE;}
+		.d2-3655896804 .background-color-AA2{background-color:#4A6FF3;}
+		.d2-3655896804 .background-color-AA4{background-color:#EDF0FD;}
+		.d2-3655896804 .background-color-AA5{background-color:#F7F8FE;}
+		.d2-3655896804 .background-color-AB4{background-color:#EDF0FD;}
+		.d2-3655896804 .background-color-AB5{background-color:#F7F8FE;}
+		.d2-3655896804 .color-N1{color:#0A0F25;}
+		.d2-3655896804 .color-N2{color:#676C7E;}
+		.d2-3655896804 .color-N3{color:#9499AB;}
+		.d2-3655896804 .color-N4{color:#CFD2DD;}
+		.d2-3655896804 .color-N5{color:#DEE1EB;}
+		.d2-3655896804 .color-N6{color:#EEF1F8;}
+		.d2-3655896804 .color-N7{color:#FFFFFF;}
+		.d2-3655896804 .color-B1{color:#0D32B2;}
+		.d2-3655896804 .color-B2{color:#0D32B2;}
+		.d2-3655896804 .color-B3{color:#E3E9FD;}
+		.d2-3655896804 .color-B4{color:#E3E9FD;}
+		.d2-3655896804 .color-B5{color:#EDF0FD;}
+		.d2-3655896804 .color-B6{color:#F7F8FE;}
+		.d2-3655896804 .color-AA2{color:#4A6FF3;}
+		.d2-3655896804 .color-AA4{color:#EDF0FD;}
+		.d2-3655896804 .color-AA5{color:#F7F8FE;}
+		.d2-3655896804 .color-AB4{color:#EDF0FD;}
+		.d2-3655896804 .color-AB5{color:#F7F8FE;}.appendix text.text{fill:#0A0F25}.md{--color-fg-default:#0A0F25;--color-fg-muted:#676C7E;--color-fg-subtle:#9499AB;--color-canvas-default:#FFFFFF;--color-canvas-subtle:#EEF1F8;--color-border-default:#0D32B2;--color-border-muted:#0D32B2;--color-neutral-muted:#EEF1F8;--color-accent-fg:#0D32B2;--color-accent-emphasis:#0D32B2;--color-attention-subtle:#676C7E;--color-danger-fg:red;}.sketch-overlay-B1{fill:url(#streaks-darker-d2-3655896804);mix-blend-mode:lighten}.sketch-overlay-B2{fill:url(#streaks-darker-d2-3655896804);mix-blend-mode:lighten}.sketch-overlay-B3{fill:url(#streaks-bright-d2-3655896804);mix-blend-mode:darken}.sketch-overlay-B4{fill:url(#streaks-bright-d2-3655896804);mix-blend-mode:darken}.sketch-overlay-B5{fill:url(#streaks-bright-d2-3655896804);mix-blend-mode:darken}.sketch-overlay-B6{fill:url(#streaks-bright-d2-3655896804);mix-blend-mode:darken}.sketch-overlay-AA2{fill:url(#streaks-dark-d2-3655896804);mix-blend-mode:overlay}.sketch-overlay-AA4{fill:url(#streaks-bright-d2-3655896804);mix-blend-mode:darken}.sketch-overlay-AA5{fill:url(#streaks-bright-d2-3655896804);mix-blend-mode:darken}.sketch-overlay-AB4{fill:url(#streaks-bright-d2-3655896804);mix-blend-mode:darken}.sketch-overlay-AB5{fill:url(#streaks-bright-d2-3655896804);mix-blend-mode:darken}.sketch-overlay-N1{fill:url(#streaks-darker-d2-3655896804);mix-blend-mode:lighten}.sketch-overlay-N2{fill:url(#streaks-dark-d2-3655896804);mix-blend-mode:overlay}.sketch-overlay-N3{fill:url(#streaks-normal-d2-3655896804);mix-blend-mode:color-burn}.sketch-overlay-N4{fill:url(#streaks-normal-d2-3655896804);mix-blend-mode:color-burn}.sketch-overlay-N5{fill:url(#streaks-bright-d2-3655896804);mix-blend-mode:darken}.sketch-overlay-N6{fill:url(#streaks-bright-d2-3655896804);mix-blend-mode:darken}.sketch-overlay-N7{fill:url(#streaks-bright-d2-3655896804);mix-blend-mode:darken}.light-code{display: block}.dark-code{display: none}]]&gt;&lt;/style&gt;&lt;g class="c3BpbmUwMQ=="&gt;&lt;g class="shape"&gt;&lt;rect x="78.000000" y="0.000000" width="100.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;"/&gt;&lt;/g&gt;&lt;text x="128.000000" y="38.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px"&gt;spine01&lt;/text&gt;&lt;/g&gt;&lt;g class="bGVhZjAx"&gt;&lt;g class="shape"&gt;&lt;rect x="0.000000" y="166.000000" width="88.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;"/&gt;&lt;/g&gt;&lt;text x="44.000000" y="204.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px"&gt;leaf01&lt;/text&gt;&lt;/g&gt;&lt;g class="bGVhZjAy"&gt;&lt;g class="shape"&gt;&lt;rect x="164.000000" y="166.000000" width="88.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;"/&gt;&lt;/g&gt;&lt;text x="208.000000" y="204.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px"&gt;leaf02&lt;/text&gt;&lt;/g&gt;&lt;g class="bGVhZjAz"&gt;&lt;g class="shape"&gt;&lt;rect x="328.000000" y="166.000000" width="88.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;"/&gt;&lt;/g&gt;&lt;text x="372.000000" y="204.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px"&gt;leaf03&lt;/text&gt;&lt;/g&gt;&lt;g class="c3BpbmUwMg=="&gt;&lt;g class="shape"&gt;&lt;rect x="238.000000" y="0.000000" width="100.000000" height="66.000000" stroke="#0D32B2" fill="#F7F8FE" class=" stroke-B1 fill-B6" style="stroke-width:2;"/&gt;&lt;/g&gt;&lt;text x="288.000000" y="38.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:16px"&gt;spine02&lt;/text&gt;&lt;/g&gt;&lt;g class="KHNwaW5lMDEgLS0gbGVhZjAxKVswXQ=="&gt;&lt;path d="M 89.496482 67.318876 C 45.400002 106.000000 35.200001 126.000000 39.761710 164.014246" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" mask="url(#d2-3655896804)"/&gt;&lt;/g&gt;&lt;g class="KHNwaW5lMDEgLS0gbGVhZjAyKVswXQ=="&gt;&lt;path d="M 128.000000 68.000000 C 128.000000 106.000000 137.600006 126.000000 174.614936 164.557225" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" mask="url(#d2-3655896804)"/&gt;&lt;/g&gt;&lt;g class="KHNwaW5lMDEgLS0gbGVhZjAzKVswXQ=="&gt;&lt;path d="M 179.815919 56.838116 C 282.000000 104.000000 315.799988 126.000000 345.769936 164.422996" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" mask="url(#d2-3655896804)"/&gt;&lt;/g&gt;&lt;g class="KHNwaW5lMDIgLS0gbGVhZjAxKVswXQ=="&gt;&lt;path d="M 236.184081 56.838116 C 134.000000 104.000000 100.199997 126.000000 70.230064 164.422995" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" mask="url(#d2-3655896804)"/&gt;&lt;/g&gt;&lt;g class="KHNwaW5lMDIgLS0gbGVhZjAyKVswXQ=="&gt;&lt;path d="M 288.000000 68.000000 C 288.000000 106.000000 278.399994 126.000000 241.385064 164.557225" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" mask="url(#d2-3655896804)"/&gt;&lt;/g&gt;&lt;g class="KHNwaW5lMDIgLS0gbGVhZjAzKVswXQ=="&gt;&lt;path d="M 326.503518 67.318876 C 370.600006 106.000000 380.799988 126.000000 376.238290 164.014246" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" mask="url(#d2-3655896804)"/&gt;&lt;/g&gt;&lt;mask id="d2-3655896804" maskUnits="userSpaceOnUse" x="-101" y="-101" width="618" height="434"&gt;
+&lt;rect x="-101" y="-101" width="618" height="434" fill="white"/&gt;
+&lt;rect x="98.500000" y="22.500000" width="59" height="21" fill="rgba(0,0,0,0.75)"/&gt;
+&lt;rect x="20.500000" y="188.500000" width="47" height="21" fill="rgba(0,0,0,0.75)"/&gt;
+&lt;rect x="184.500000" y="188.500000" width="47" height="21" fill="rgba(0,0,0,0.75)"/&gt;
+&lt;rect x="348.500000" y="188.500000" width="47" height="21" fill="rgba(0,0,0,0.75)"/&gt;
+&lt;rect x="258.500000" y="22.500000" width="59" height="21" fill="rgba(0,0,0,0.75)"/&gt;
+&lt;/mask&gt;&lt;/svg&gt;&lt;/svg&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+ 
+
+
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;
+</content><category term="misc"></category></entry><entry><title>Using your own Infrahub Provider</title><link href="/first_steps_infrahub_terraform.html" rel="alternate"></link><published>2025-04-14T20:00:00+02:00</published><updated>2025-04-14T20:00:00+02:00</updated><author><name>mmartinez</name></author><id>tag:None,2025-04-14:/first_steps_infrahub_terraform.html</id><summary type="html">&lt;h1&gt;🌐 How to use your Custom Infrahub Terraform Provider&lt;/h1&gt;
 &lt;p&gt;Working with custom Terraform providers unlocks a whole new level of automation and flexibility. With the &lt;strong&gt;Infrahub Terraform provider&lt;/strong&gt;, you can define, query, and manage infrastructure in a modular, declarative way—perfect for modern network and infrastructure workflows.&lt;/p&gt;
 &lt;p&gt;In this guide, you …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;🌐 How to use your Custom Infrahub Terraform Provider&lt;/h1&gt;
 &lt;p&gt;Working with custom Terraform providers unlocks a whole new level of automation and flexibility. With the &lt;strong&gt;Infrahub Terraform provider&lt;/strong&gt;, you can define, query, and manage infrastructure in a modular, declarative way—perfect for modern network and infrastructure workflows.&lt;/p&gt;
