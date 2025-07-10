@@ -12,7 +12,7 @@ notebook = "^5"  # Version 6 breaks pelican-jupyter
 pelican-jupyter = "^0.10.0"
 bash_kernel = "^0.10.0"
 pelican-sitemap = "^1.2.0"
-jinja2 = "3.0.3"
+jinja2 = "3.1.6"
 kroki = {git = "https://github.com/ubaumann/kroki_python.git"}
 
 [tool.poetry.scripts]
