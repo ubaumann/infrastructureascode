@@ -46,7 +46,7 @@
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[8]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[1]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;load_ext&lt;/span&gt; kroki
@@ -702,7 +702,7 @@ spine.spine02 -- leaf.siteB.leaf03: Uplink
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Node Properties&lt;/p&gt;
+&lt;h3 id="Node-Properties"&gt;Node Properties&lt;a class="anchor-link" href="#Node-Properties"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Node properties, such as shape, can be set using either dot notation or curly bracket syntax.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -871,15 +871,14 @@ spine.spine02 -- leaf.siteB.leaf03
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Images
-&lt;a href="https://d2lang.com/tour/icons#add-shape-image-for-standalone-icon-shapes"&gt;https://d2lang.com/tour/icons#add-shape-image-for-standalone-icon-shapes&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="Icons"&gt;Icons&lt;a class="anchor-link" href="#Icons"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;In D2, you can assign icons to nodes to enhance visual clarity and convey additional meaning. This is especially useful for distinguishing between different device types or roles in a network diagram. Icons should be in SVG format. By setting the &lt;code&gt;shape&lt;/code&gt; property to &lt;a href="https://d2lang.com/tour/icons#add-shape-image-for-standalone-icon-shapes"&gt;&lt;code&gt;image&lt;/code&gt;&lt;/a&gt;, the icon is displayed without a surrounding box, resulting in a cleaner, standalone appearance.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[9]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[8]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="k"&gt;kroki&lt;/span&gt; d2
@@ -910,7 +909,7 @@ spine.spine02 -- leaf.siteB.leaf03
 
 &lt;div class="output_area"&gt;
 
-    &lt;div class="prompt output_prompt"&gt;Out[9]:&lt;/div&gt;
+    &lt;div class="prompt output_prompt"&gt;Out[8]:&lt;/div&gt;
 
 
 
@@ -1036,14 +1035,14 @@ spine.spine02 -- leaf.siteB.leaf03
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Classes"&gt;Classes&lt;a class="anchor-link" href="#Classes"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;a href="https://d2lang.com/tour/classes"&gt;https://d2lang.com/tour/classes&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="Classes"&gt;Classes&lt;a class="anchor-link" href="#Classes"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;In D2, &lt;a href="https://d2lang.com/tour/classes"&gt;classes&lt;/a&gt; allow you to define reusable styles that can be applied to multiple nodes, links, or containers. This helps keep your diagram definitions cleaner and ensures consistent styling across elements.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[8]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[9]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="k"&gt;kroki&lt;/span&gt; d2
@@ -1079,7 +1078,7 @@ spine.spine02 -- leaf.siteB.leaf03
 
 &lt;div class="output_area"&gt;
 
-    &lt;div class="prompt output_prompt"&gt;Out[8]:&lt;/div&gt;
+    &lt;div class="prompt output_prompt"&gt;Out[9]:&lt;/div&gt;
 
 
 
@@ -1205,16 +1204,14 @@ spine.spine02 -- leaf.siteB.leaf03
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Interactive"&gt;Interactive&lt;a class="anchor-link" href="#Interactive"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Enriching ...
-&lt;a href="https://d2lang.com/tour/interactive#tooltips"&gt;Tooltips&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://d2lang.com/tour/interactive#links"&gt;Links&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="Interactive"&gt;Interactive&lt;a class="anchor-link" href="#Interactive"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;When enriching a topology with additional information, it's important to avoid cluttering the diagram. Overloaded diagrams are hard to read and visually unappealing. SVGs support interactive elements such as &lt;a href="https://d2lang.com/tour/interactive#links"&gt;Hyperlinks&lt;/a&gt; and &lt;a href="https://d2lang.com/tour/interactive#tooltips"&gt;Tooltips&lt;/a&gt;, which are excellent ways to add context without overcrowding the topology.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[9]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[10]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="k"&gt;kroki&lt;/span&gt; d2
@@ -1243,7 +1240,7 @@ spine.spine02 -- leaf.siteB.leaf03
 
 &lt;div class="output_area"&gt;
 
-    &lt;div class="prompt output_prompt"&gt;Out[9]:&lt;/div&gt;
+    &lt;div class="prompt output_prompt"&gt;Out[10]:&lt;/div&gt;
 
 
 
@@ -1399,15 +1396,14 @@ platform: eos&lt;/title&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" width="32"
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Title and text notes&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://d2lang.com/tour/positions#near"&gt;Near&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="Near"&gt;Near&lt;a class="anchor-link" href="#Near"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Another useful feature is the &lt;a href="https://d2lang.com/tour/positions#near"&gt;near&lt;/a&gt; position, which can be used to add notes to one side of the diagram. This is also a convenient way to include a legend at the bottom of the diagram.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[10]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[11]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="k"&gt;kroki&lt;/span&gt; d2
@@ -1439,7 +1435,7 @@ spine.spine02 -- leaf.siteB.leaf03
 
 &lt;div class="output_area"&gt;
 
-    &lt;div class="prompt output_prompt"&gt;Out[10]:&lt;/div&gt;
+    &lt;div class="prompt output_prompt"&gt;Out[11]:&lt;/div&gt;
 
 
 
@@ -2312,14 +2308,14 @@ spine.spine02 -- leaf.siteB.leaf03
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Animated"&gt;Animated&lt;a class="anchor-link" href="#Animated"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Highlight or more readable&lt;/p&gt;
+&lt;h3 id="Animation"&gt;Animation&lt;a class="anchor-link" href="#Animation"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;D2 supports basic &lt;a href="https://d2lang.com/tour/style/#animated"&gt;animations&lt;/a&gt; that can enhance the presentation of diagrams and help draw the viewer's attention to specific areas, especially during updates or transitions. While not essential for static network topologies, animations can be useful for illustrating changes or making interactive diagrams more engaging.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[11]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[12]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="k"&gt;kroki&lt;/span&gt; d2
@@ -2346,7 +2342,7 @@ spine.spine02 -- leaf.siteB.leaf03: {
 
 &lt;div class="output_area"&gt;
 
-    &lt;div class="prompt output_prompt"&gt;Out[11]:&lt;/div&gt;
+    &lt;div class="prompt output_prompt"&gt;Out[12]:&lt;/div&gt;
 
 
 
@@ -2486,15 +2482,14 @@ spine.spine02 -- leaf.siteB.leaf03: {
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Connection"&gt;Connection&lt;a class="anchor-link" href="#Connection"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Connection lables can have a huge impact on node placement. D2 allows to control the edges of the connection. This can be used to chnage the arrow style or set a label&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://d2lang.com/tour/connections#arrowheads"&gt;https://d2lang.com/tour/connections#arrowheads&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="Connections"&gt;Connections&lt;a class="anchor-link" href="#Connections"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Adding connection information, such as interface names, to diagrams can be challenging, especially for atuddo-layout algorithms. D2 allows you to style &lt;a href="https://d2lang.com/tour/connections#arrowheads"&gt;arrowheads&lt;/a&gt; and assign labels to both the source and target ends of a connection.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[12]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[13]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="k"&gt;kroki&lt;/span&gt; d2
@@ -2535,7 +2530,7 @@ spine.spine02 -- leaf.siteB.leaf03: {
 
 &lt;div class="output_area"&gt;
 
-    &lt;div class="prompt output_prompt"&gt;Out[12]:&lt;/div&gt;
+    &lt;div class="prompt output_prompt"&gt;Out[13]:&lt;/div&gt;
 
 
 
@@ -2668,6 +2663,7 @@ spine.spine02 -- leaf.siteB.leaf03: {
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="Direction"&gt;Direction&lt;a class="anchor-link" href="#Direction"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;The direction of the diagram can have an impact on how appealing and readable it is. Choosing the right layout direction can significantly improve clarity.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2825,6 +2821,8 @@ spine.spine02 -- leaf.siteB.leaf03
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="Layout-Engine"&gt;Layout Engine&lt;a class="anchor-link" href="#Layout-Engine"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;D2 supports multiple layout engines that control how elements are positioned in the diagram. Choosing the right engine can significantly improve readability, especially for larger or more complex topologies.&lt;/p&gt;
+&lt;p&gt;The default engine is &lt;a href="https://d2lang.com/tour/dagre"&gt;Dagre&lt;/a&gt;, which is also used by Mermaid and Graphviz. It is well-suited for hierarchical layouts. &lt;a href="https://d2lang.com/tour/elk"&gt;ELK&lt;/a&gt; tends to produce fewer edge crossings and generates clean, orthogonal routes, making it a strong option for complex network diagrams.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2987,13 +2985,14 @@ spine.spine02 -- leaf.siteB.leaf03
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="CLOS-Topology"&gt;CLOS Topology&lt;a class="anchor-link" href="#CLOS-Topology"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;By combining the features discussed, a simple 2-spine, 3-leaf topology might look like the example below. Feel free to experiment and improve the diagram; I'd be interested to see what you come up with.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[18]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[16]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="k"&gt;kroki&lt;/span&gt; d2
@@ -3086,7 +3085,7 @@ spine.spine02 -- leaf.leaf03: {
 
 &lt;div class="output_area"&gt;
 
-    &lt;div class="prompt output_prompt"&gt;Out[18]:&lt;/div&gt;
+    &lt;div class="prompt output_prompt"&gt;Out[16]:&lt;/div&gt;
 
 
 
@@ -3371,53 +3370,15 @@ Eth1&lt;/title&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" width="32" height="
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="Using-the-Kroki-API-with-Python"&gt;Using the Kroki API with Python&lt;a class="anchor-link" href="#Using-the-Kroki-API-with-Python"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The Kroki API is straightforward to use. You can send a diagram as a POST request to the endpoint, and the response will be returned in the format specified in the URL. Alternatively, you can encode the diagram and use a GET request. This approach makes it easy to share diagrams via URL, but it only works well for medium-sized diagrams due to URL length limitations.&lt;/p&gt;
+&lt;p&gt;Example Python code for encoding diagrams is available in the &lt;a href="https://docs.kroki.io/kroki/setup/encode-diagram/#python"&gt;documentation&lt;/a&gt;.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="k"&gt;kroki&lt;/span&gt; d2
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="k"&gt;kroki&lt;/span&gt; d2
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Using-the-Kroki-API-with-Python"&gt;Using the Kroki API with Python&lt;a class="anchor-link" href="#Using-the-Kroki-API-with-Python"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[17]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;requests&lt;/span&gt;
@@ -3442,7 +3403,7 @@ Eth1&lt;/title&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" width="32" height="
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[7]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[18]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;IPython.display&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SVG&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;display&lt;/span&gt;
@@ -3563,19 +3524,6 @@ Eth1&lt;/title&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" width="32" height="
 
 &lt;/div&gt;
 
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
