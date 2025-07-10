@@ -4,13 +4,13 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="This blog post explores how to create network topologies using D2, a powerful diagramming tool.">
-        <meta property="og:description" content="This blog post explores how to create network topologies using D2, a powerful diagramming tool.">
+        <meta name="description" content="This blog post explores how to create network topologies using D2, a modern and powerful diagramming tool. It highlights key features such as grouping, labeling, interactivity, and layout options to help you build clear and effective network diagrams.">
+        <meta property="og:description" content="This blog post explores how to create network topologies using D2, a modern and powerful diagramming tool. It highlights key features such as grouping, labeling, interactivity, and layout options to help you build clear and effective network diagrams.">
         <meta name="keywords" content="">
         <meta name="author" content="ubaumann">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="Creating Network Topologies with D2 - Infrastructure as Code">
-        <meta name="twitter:description" content="This blog post explores how to create network topologies using D2, a powerful diagramming tool.">
+        <meta name="twitter:description" content="This blog post explores how to create network topologies using D2, a modern and powerful diagramming tool. It highlights key features such as grouping, labeling, interactivity, and layout options to help you build clear and effective network diagrams.">
         <meta property="og:url" content="/d2-network-topologies.html">
         <meta name="image" property="og:image" content="/images/background.jpg">
         <meta property="og:image" content="/images/background.jpg">
@@ -95,9 +95,9 @@
         <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Creating-Network-Topologies-with-D2">Creating Network Topologies with D2<a class="anchor-link" href="#Creating-Network-Topologies-with-D2">&#182;</a></h1><p>Multiple tools can be used to create diagrams from textual descriptions. <a href="https://kroki.io">kroki.io</a> is a valuable tool that offers an API for rendering multiple diagram formats. Checking out the <a href="https://kroki.io/#cheat-sheet">Cheat Sheet</a> is highly recommended. In the past, I have mainly used <a href="https://graphviz.org">Graphviz</a> and <a href="https://mermaid.js.org">Mermaid</a> to create network topologies. <a href="https://d2lang.com">D2</a> is a newer open-source tool with a more modern DSL (Domain Specific Language) to create diagrams. This post will demonstrate how to build network topologies with D2 and highlight some of the features D2 offers.</p>
+<h1 id="Creating-Network-Topologies-with-D2">Creating Network Topologies with D2<a class="anchor-link" href="#Creating-Network-Topologies-with-D2">&#182;</a></h1><p>Multiple tools can be used to create diagrams from textual descriptions. <a href="https://kroki.io">kroki.io</a> is a valuable tool that offers an API for rendering multiple diagram formats. Checking out the <a href="https://kroki.io/#cheat-sheet">Cheat Sheet</a> is highly recommended. In the past, I have mainly used <a href="https://graphviz.org">GraphViz</a> and <a href="https://mermaid.js.org">Mermaid</a> to create network topologies. <a href="https://d2lang.com">D2</a> is a newer open-source tool with a more modern DSL (Domain Specific Language) to create diagrams. This post will demonstrate how to build network topologies with D2 and highlight some of the features D2 offers.</p>
 <p>Several tools are available for creating diagrams from textual descriptions. One particularly useful option is <a href="https://kroki.io">kroki.io</a>, which provides an API for rendering multiple diagram formats. It's highly recommended to explore the <a href="https://kroki.io/#cheat-sheet">Cheat Sheet</a> to get an overview of the supported syntaxes.</p>
-<p>In the past, I’ve primarily used <a href="https://graphviz.org">Graphviz</a> and <a href="https://mermaid.js.org">Mermaid</a> for building network topologies. More recently, I’ve started working with <a href="https://d2lang.com">D2</a>, a newer open-source tool that uses a modern domain-specific language (DSL) for diagram creation.</p>
+<p>In the past, I’ve primarily used <a href="https://graphviz.org">GraphViz</a> and <a href="https://mermaid.js.org">Mermaid</a> for building network topologies. More recently, I’ve started working with <a href="https://d2lang.com">D2</a>, a newer open-source tool that uses a modern domain-specific language (DSL) for diagram creation.</p>
 <p>This post demonstrates how to use D2 to build network topologies and highlights some of the key features it offers.</p>
 
 </div>
@@ -2915,7 +2915,7 @@ spine.spine02 -- leaf.siteB.leaf03
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Layout-Engine">Layout Engine<a class="anchor-link" href="#Layout-Engine">&#182;</a></h3><p>D2 supports multiple layout engines that control how elements are positioned in the diagram. Choosing the right engine can significantly improve readability, especially for larger or more complex topologies.</p>
-<p>The default engine is <a href="https://d2lang.com/tour/dagre">Dagre</a>, which is also used by Mermaid and Graphviz. It is well-suited for hierarchical layouts. <a href="https://d2lang.com/tour/elk">ELK</a> tends to produce fewer edge crossings and generates clean, orthogonal routes, making it a strong option for complex network diagrams.</p>
+<p>The default engine is <a href="https://d2lang.com/tour/dagre">Dagre</a>, which is also used by Mermaid and GraphViz. It is well-suited for hierarchical layouts. <a href="https://d2lang.com/tour/elk">ELK</a> tends to produce fewer edge crossings and generates clean, orthogonal routes, making it a strong option for complex network diagrams.</p>
 
 </div>
 </div>
