@@ -690,23 +690,19 @@ test = ["ipykernel", "pre-commit", "pytest (<9)", "pytest-cov", "pytest-timeout"
 
 [[package]]
 name = "kroki"
-version = "0.0.4"
+version = "0.1.5"
 description = "Access kroki from python"
 optional = false
 python-versions = "*"
-files = []
-develop = false
+files = [
+    {file = "kroki-0.1.5-py3-none-any.whl", hash = "sha256:ff36c3d6141e3126da964f3e382d2a9588c30c805d0e132d2c7d27e7fdf68d75"},
+    {file = "kroki-0.1.5.tar.gz", hash = "sha256:a1fb8c56e93caa36d50d2cc76a3fabec498f67a89bd520f91736e28dc31d91d0"},
+]
 
 [package.dependencies]
 i2 = "*"
 IPython = "*"
 requests = "*"
-
-[package.source]
-type = "git"
-url = "https://github.com/ubaumann/kroki_python.git"
-reference = "HEAD"
-resolved_reference = "597ec7d318502242eb869f70411af06da8c7cc56"
 
 [[package]]
 name = "markdown"
@@ -1721,4 +1717,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "ebf48d257c333cab7c6a04ab4391cd94734c6beebf1b35a9b353db50c5da5fe0"
+content-hash = "be1ae83bda88c0ae0d3e849afa2c50dc263ccc74cd043fa808f4dae9f6b81360"
