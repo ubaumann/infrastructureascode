@@ -3,6 +3,7 @@ name = "infrastructureascode"
 version = "0.1.0"
 description = "Webpage infrastructureascode.ch"
 authors = ["ubaumann"]
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -13,7 +14,7 @@ pelican-jupyter = "^0.10.0"
 bash_kernel = "^0.10.0"
 pelican-sitemap = "^1.2.0"
 jinja2 = "3.0.3"
-kroki = {git = "https://github.com/ubaumann/kroki_python.git"}
+kroki = "0.1.5"
 
 [tool.poetry.scripts]
 bash_kernel_install = 'bash_kernel.install'
